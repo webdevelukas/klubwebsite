@@ -4,17 +4,16 @@ import styled from "styled-components";
 import BecomeAMember from "../BecomeAMember";
 import { colors } from "styles/colors";
 import LinkList from "../LinkList";
-import ResponsiveImage from "../../elements/ResponsiveImage";
-import PartnersSection from "../sections/PartnersSection";
 import NextLink from "next/link";
+
 Footer.propTypes = {};
-function Footer(props) {
+
+function Footer() {
   return (
     <Container>
       <BecomeAMember />
       <FooterContainer>
         <LinkList />
-        <Image src="/bolzplatz-bambule.png" />
         <Small>
           <NextLink href="/impressum">
             <a>Impressum</a>
@@ -46,8 +45,4 @@ const FooterContainer = styled.footer`
 `;
 const Small = styled.small`
   text-align: center;
-`;
-const Image = styled(ResponsiveImage)`
-  height: 4.5rem;
-  object-fit: contain;
 `;
