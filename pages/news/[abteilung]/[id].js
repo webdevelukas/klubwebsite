@@ -7,8 +7,11 @@ import Gallery from "components/Gallery";
 import FilestackImage from "elements/FilestackImage";
 import renderDate from "services/renderDate";
 import { GraphQLClient } from "graphql-request";
+
 const categories = ["1. Mannschaft", "Herren", "Fußball"];
+
 NewsPage.propTypes = {};
+
 function NewsPage({ post }) {
   const { title, titleimage, content, event, author, images } = post;
   return (
@@ -43,11 +46,10 @@ function NewsPage({ post }) {
     </>
   );
 }
+
 NewsPage.getInitialProps = async ({ query }) => {
   const { id } = query;
-  const graphcms = new GraphQLClient(
-    "https://api-eu-central-1.graphcms.com/v2/ckdorrw6h13ad01xnfrj38uu2/master"
-  );
+  const graphcms = new GraphQLClient(process.env.GRAPHCMS_API);
   const post = await graphcms.request(
     `query postContent($id: ID){
     post(where: { id: $id }) {

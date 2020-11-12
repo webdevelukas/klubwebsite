@@ -15,9 +15,7 @@ export default function Home({ posts, events }) {
   );
 }
 Home.getInitialProps = async () => {
-  const graphcms = new GraphQLClient(
-    "https://api-eu-central-1.graphcms.com/v2/ckdorrw6h13ad01xnfrj38uu2/master"
-  );
+  const graphcms = new GraphQLClient(process.env.GRAPHCMS_API);
   const data = await graphcms.request(`{
     posts(orderBy: createdAt_ASC) {
       id
