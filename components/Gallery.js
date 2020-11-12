@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { colors } from "styles/colors";
-import Lightbox from "components/Images/Lightbox";
+import Lightbox from "../components/Images/Lightbox";
 import FilestackImage from "elements/FilestackImage";
 Gallery.propTypes = {};
 function Gallery({ images }) {
