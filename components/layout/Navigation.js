@@ -50,15 +50,18 @@ function Navigation({ open, setOpen }) {
         <TopLinkList>
           {!showSubMenu &&
             linkList.map(({ title, items }, index) => (
-              <React.Fragment key={title}>
+              <React.Fragment key={index}>
                 <Container onClick={() => setActiveIndex(index)}>
                   <ListItem>{title}</ListItem>
                   <ToggleButton>{">"}</ToggleButton>
                 </Container>
                 {activeIndex === index && (
                   <SubLinkList>
-                    {items.map((item) => (
-                      <ListItem key={item} onClick={() => setShowSubMenu(true)}>
+                    {items.map((item, index) => (
+                      <ListItem
+                        key={index}
+                        onClick={() => setShowSubMenu(true)}
+                      >
                         {item}
                       </ListItem>
                     ))}
@@ -67,7 +70,7 @@ function Navigation({ open, setOpen }) {
               </React.Fragment>
             ))}
           {showSubMenu &&
-            teams.map((team) => <ListItem key={team}>{team}</ListItem>)}
+            teams.map((team, index) => <ListItem key={index}>{team}</ListItem>)}
         </TopLinkList>
         {showSubMenu && (
           <ListItem onClick={() => setShowSubMenu(false)}>Zurück</ListItem>

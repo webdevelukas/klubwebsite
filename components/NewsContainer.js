@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import SingleBlogPost from "./SingleBlogPost";
 import { colors } from "styles/colors";
+
 NewsContainer.propTypes = {};
+
 function NewsContainer({ posts }) {
   return (
     <Container>
@@ -14,6 +16,7 @@ function NewsContainer({ posts }) {
   );
 }
 export default NewsContainer;
+
 const Container = styled.div`
   padding: 1rem 0.5rem 2rem;
   background: white;

@@ -9,9 +9,9 @@ function Breadcrumbs({ breadcrumbs, route }) {
     <Container>
       <Small>
         {breadcrumbs &&
-          breadcrumbs.map((breadcrumb) => {
+          breadcrumbs.map((breadcrumb, index) => {
             return (
-              <NextLink key={breadcrumb} href="/">
+              <NextLink key={index} href="/">
                 <Link>
                   {breadcrumb === "" ? "tsvpaunzhausen.de" : breadcrumb}
                 </Link>

@@ -9,7 +9,7 @@ import FilestackImage from "../elements/FilestackImage";
 SingleBlogPost.propTypes = {};
 function SingleBlogPost({ index, post }) {
   const firstPost = index === 0;
-  const { title, titleimage, event, id } = post;
+  const { title, titleimage, event, id, groups } = post;
   return (
     <Article>
       <Picture>
@@ -23,7 +23,7 @@ function SingleBlogPost({ index, post }) {
           <Headline>{title}</Headline>
         </NextLink>
         <Date>{renderDate(event.dateandtime)}</Date>
-        {/* {firstPost && <Chips chips={chips} />} */}
+        {/* {firstPost && <Chips groups={groups} />} */}
       </InfoContainer>
     </Article>
   );

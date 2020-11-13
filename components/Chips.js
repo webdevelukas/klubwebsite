@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import Chip from "./Chip";
 import styled from "styled-components";
-function Chips({ chips }) {
+function Chips({ groups }) {
   return (
     <Container>
-      {chips.map((category) => (
-        <Chip key={category}>{category}</Chip>
+      {groups.map(({ name }, index) => (
+        <Chip key={index}>{name}</Chip>
       ))}
     </Container>
   );
