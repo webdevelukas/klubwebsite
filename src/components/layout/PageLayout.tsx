@@ -1,6 +1,6 @@
 import NavigationContainer from "./NavigationContainer";
 import Footer from "./Footer";
-import GlobalStyles from "styles/GlobalStyles";
+import GlobalStyles from "../../styles/GlobalStyles";
 import PartnersSection from "../sections/PartnersSection";
 import styled from "styled-components";
 import Head from "next/head";
