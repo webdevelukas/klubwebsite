@@ -1,12 +1,14 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import SingleBlogPost from "./SingleBlogPost";
 import { colors } from "styles/colors";
+import { Posts } from "types/posts";
 
-NewsContainer.propTypes = {};
+type NewsContainerProps = {
+  posts: Posts;
+};
 
-function NewsContainer({ posts }) {
+function NewsContainer({ posts }: NewsContainerProps) {
   return (
     <Container>
       {posts.map((post, index) => (

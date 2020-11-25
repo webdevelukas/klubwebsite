@@ -1,10 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import EventBox from "../EventBox";
 import ComponentSection from "elements/Section";
-EventsSection.propTypes = {};
-function EventsSection({ events }) {
+import { Events } from "types/events";
+
+type EventsSectionProps = {
+  events: Events;
+};
+
+function EventsSection({ events }: EventsSectionProps) {
   return (
     <ComponentSection title="Kommende Events">
       <Container>

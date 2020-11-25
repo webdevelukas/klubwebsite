@@ -1,20 +1,30 @@
 import BlogPost from "components/BlogPost";
 import EventsSection from "components/sections/EventsSection";
-import ComponentSection from "elements/Section";
+import Section from "elements/Section";
 import NewsContainer from "components/NewsContainer";
 import { GraphQLClient } from "graphql-request";
-export default function Home({ posts, events }) {
+import { Posts } from "types/posts";
+import { GetStaticProps } from "next";
+import { Events } from "types/events";
+
+type HomePageProps = {
+  posts: Posts;
+  events: Events;
+};
+
+function HomePage({ posts, events }: HomePageProps) {
   return (
     <>
       <BlogPost posts={posts} />
       <EventsSection events={events} />
-      <ComponentSection title="News">
+      <Section title="News">
         <NewsContainer posts={posts} />
-      </ComponentSection>
+      </Section>
     </>
   );
 }
-Home.getInitialProps = async () => {
+
+export const getStaticProps: GetStaticProps = async () => {
   const graphcms = new GraphQLClient(process.env.GRAPHCMS_API);
   const data = await graphcms.request(`{
     posts(orderBy: createdAt_ASC) {
@@ -23,9 +33,6 @@ Home.getInitialProps = async () => {
       titleimage {
         url
         alt
-      }
-      content {
-        html
       }
       event {
         dateandtime
@@ -42,5 +49,7 @@ Home.getInitialProps = async () => {
     }
   }`);
   const { posts, events } = data;
-  return { posts, events };
+  return { props: { posts, events } };
 };
+
+export default HomePage;

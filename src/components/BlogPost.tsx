@@ -1,12 +1,16 @@
-import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import { colors } from "../styles/colors";
 import renderDate from "services/renderDate";
 import FilestackImage from "elements/FilestackImage";
 import NextLink from "next/link";
-BlogPost.propTypes = {};
-function BlogPost({ posts }) {
+import { Posts } from "types/posts";
+import { Groups } from "types/groups";
+
+type BlogPostProps = {
+  posts: Posts;
+};
+
+function BlogPost({ posts }: BlogPostProps) {
   const post = posts[0];
   const { title, titleimage, event, department, groups, id } = post;
   return (
@@ -31,10 +35,10 @@ function BlogPost({ posts }) {
   );
 }
 export default BlogPost;
-function renderGroupsWithSeperator(groups) {
+function renderGroupsWithSeperator(groups: Groups) {
   const groupsWithSeperator = groups
     .map((group) => group.name)
-    .reduce((previous, current) => [previous, ", ", current]);
+    .reduce((previous, current) => previous + ", " + current);
   return groupsWithSeperator;
 }
 const Article = styled.article``;

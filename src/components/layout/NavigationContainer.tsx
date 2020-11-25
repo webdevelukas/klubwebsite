@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import { useState } from "react";
 import NavigationBar from "./NavigationBar";
 import Navigation from "./Navigation";
-NavigationContainer.propTypes = {};
+
 function NavigationContainer() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
   return (
     <>
-      <NavigationBar open={open} setOpen={setOpen} />
+      <NavigationBar setOpen={setOpen} />
       <Navigation open={open} setOpen={setOpen} />
     </>
   );

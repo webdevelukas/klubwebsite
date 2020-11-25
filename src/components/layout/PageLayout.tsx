@@ -1,12 +1,15 @@
-import React from "react";
 import NavigationContainer from "./NavigationContainer";
 import Footer from "./Footer";
-import GlobalStyles from "styles/GlobalStyles";
+import GlobalStyles from "../../styles/GlobalStyles";
 import PartnersSection from "../sections/PartnersSection";
 import styled from "styled-components";
 import Head from "next/head";
-PageLayout.propTypes = {};
-function PageLayout({ children }) {
+
+type PageLayoutProps = {
+  children: React.ReactNode;
+};
+
+function PageLayout({ children }: PageLayoutProps) {
   return (
     <Layout>
       <Head>
@@ -27,8 +30,9 @@ function PageLayout({ children }) {
     </Layout>
   );
 }
+
 export default PageLayout;
+
 const Layout = styled.div`
   height: 100vh;
-  overflow: scroll;
 `;
