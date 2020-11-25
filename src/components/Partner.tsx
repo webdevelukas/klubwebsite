@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ResponsiveImage from "elements/ResponsiveImage";
+import ResponsiveImage from "../elements/ResponsiveImage";
 
 type PartnerProps = {
   logoUrl: string;
