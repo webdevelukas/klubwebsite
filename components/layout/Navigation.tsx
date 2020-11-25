@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import { colors } from "styles/colors";
-import LinkListItem from "components/LinkListItem";
 import NextLink from "next/link";
-Navigation.propTypes = {};
+
 const linkList = [
   {
     title: "Abteilungen",
@@ -36,7 +34,13 @@ const teams = [
   "U7-Junioren",
   "Alte Herren",
 ];
-function Navigation({ open, setOpen }) {
+
+type NavigationProps = {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+};
+
+function Navigation({ open, setOpen }: NavigationProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [showSubMenu, setShowSubMenu] = useState(false);
   return (
@@ -88,7 +92,9 @@ function Navigation({ open, setOpen }) {
     </>
   );
 }
+
 export default Navigation;
+
 const BackgroundOverlay = styled.div`
   z-index: 1000;
   position: absolute;
@@ -98,7 +104,8 @@ const BackgroundOverlay = styled.div`
   top: 0;
   bottom: 0;
 `;
-const Nav = styled.nav`
+
+const Nav = styled.nav<{ open: boolean }>`
   z-index: 1001;
   position: absolute;
   top: 0;
@@ -109,15 +116,18 @@ const Nav = styled.nav`
   height: 100vh;
   background: ${colors.main.default};
   overflow: auto;
+
   /* Open/Close Animation */
   transition: transform 0.3s ease-in-out;
   transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};
 `;
+
 const TopLinkList = styled.ul`
   margin: 0;
   padding: 0;
   list-style: none;
 `;
+
 const SubLinkList = styled.ul`
   padding: 0;
   list-style: none;
@@ -126,6 +136,7 @@ const SubLinkList = styled.ul`
     background: rgb(240, 240, 240);
   }
 `;
+
 const ListItem = styled.li`
   background: white;
   width: 100%;
@@ -134,6 +145,7 @@ const ListItem = styled.li`
   color: ${colors.main.default};
   margin-bottom: 1px;
 `;
+
 const Container = styled.div`
   display: grid;
   grid-template-columns: 4fr 1fr;
@@ -143,19 +155,23 @@ const Container = styled.div`
     margin: 0;
   }
 `;
+
 const ToggleButton = styled.button`
   background: white;
   color: ${colors.main.default};
 `;
+
 const Headline = styled.h2`
   color: white;
   text-transform: uppercase;
 `;
+
 const MenuBurger = styled.button`
   width: 2.5rem;
   height: 2.5rem;
   padding: 0;
 `;
+
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr auto;
@@ -163,6 +179,7 @@ const Wrapper = styled.div`
   padding: 0 0.75rem;
   margin: 1.5rem 0 3rem;
 `;
+
 const Small = styled.small`
   text-align: center;
 `;

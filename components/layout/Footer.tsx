@@ -1,19 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import BecomeAMember from "../BecomeAMember";
 import { colors } from "styles/colors";
 import LinkList from "../LinkList";
 import NextLink from "next/link";
 
-Footer.propTypes = {};
-
 function Footer() {
   return (
     <Container>
       <BecomeAMember />
       <FooterContainer>
-        <LinkList />
+        {/* <LinkList /> */}
         <Small>
           <NextLink href="/impressum">
             <a>Impressum</a>
@@ -28,12 +24,14 @@ function Footer() {
   );
 }
 export default Footer;
+
 const Container = styled.div`
   margin-top: 6rem;
   a {
     color: white;
   }
 `;
+
 const FooterContainer = styled.footer`
   display: grid;
   grid-auto-rows: auto;
@@ -43,6 +41,7 @@ const FooterContainer = styled.footer`
   background: ${colors.main.default};
   color: white;
 `;
+
 const Small = styled.small`
   text-align: center;
 `;
