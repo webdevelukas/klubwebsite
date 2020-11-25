@@ -93,7 +93,7 @@ const BackgroundOverlay = styled.div`
   z-index: 1000;
   position: absolute;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   background: ${colors.main.overlay};
   top: 0;
   bottom: 0;
@@ -105,7 +105,7 @@ const Nav = styled.nav`
   right: 0;
   bottom: 0;
   padding-bottom: 4rem;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background: ${colors.main.default};
   overflow: auto;

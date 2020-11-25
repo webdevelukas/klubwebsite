@@ -9,7 +9,7 @@ function BecomeAMember(props) {
 export default BecomeAMember;
 const Button = styled.button`
   padding: 2rem;
-  width: 100vw;
+  width: 100%;
   background: ${colors.secondary};
   text-transform: uppercase;
   color: white;

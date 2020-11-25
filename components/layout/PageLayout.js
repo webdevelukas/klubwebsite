@@ -30,5 +30,4 @@ function PageLayout({ children }) {
 export default PageLayout;
 const Layout = styled.div`
   height: 100vh;
-  overflow: scroll;
 `;
