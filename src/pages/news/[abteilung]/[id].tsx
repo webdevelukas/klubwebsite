@@ -3,8 +3,8 @@ import { colors } from "styles/colors";
 import Gallery from "components/images/Gallery";
 import FilestackImage from "elements/FilestackImage";
 import renderDate from "services/renderDate";
-import { GraphQLClient } from "graphql-request";
 import { Post } from "types/posts";
+import graphCMS from "services/graphCMS";
 
 type NewsPageProps = {
   post: Post;
@@ -12,6 +12,7 @@ type NewsPageProps = {
 
 function NewsPage({ post }: NewsPageProps) {
   const { title, titleimage, content, event, author, images } = post;
+
   return (
     <>
       <Container>
@@ -44,10 +45,32 @@ function NewsPage({ post }: NewsPageProps) {
   );
 }
 
-NewsPage.getInitialProps = async ({ query }) => {
-  const { id } = query;
-  const graphcms = new GraphQLClient(process.env.GRAPHCMS_API);
-  const post = await graphcms.request(
+export async function getStaticPaths() {
+  const { posts } = await graphCMS(`{
+    posts {
+      id
+      department {
+        uid
+      }
+    }
+  }
+  `);
+
+  const paths = posts.map((post: Post) => ({
+    params: { abteilung: post.department.uid, id: post.id },
+  }));
+
+  return { paths, fallback: false };
+}
+
+type getStaticProps = {
+  params: { id: string };
+};
+
+export async function getStaticProps({ params }: getStaticProps) {
+  const { id } = params;
+
+  const post = await graphCMS(
     `query postContent($id: ID){
     post(where: { id: $id }) {
       title
@@ -74,8 +97,9 @@ NewsPage.getInitialProps = async ({ query }) => {
   }`,
     { id: id }
   );
-  return post;
-};
+  return { props: post };
+}
+
 export default NewsPage;
 const Container = styled.div`
   background: white;

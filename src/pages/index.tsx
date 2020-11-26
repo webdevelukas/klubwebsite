@@ -2,10 +2,9 @@ import BlogPost from "components/BlogPost";
 import EventsSection from "components/sections/EventsSection";
 import Section from "elements/Section";
 import NewsContainer from "components/NewsContainer";
-import { GraphQLClient } from "graphql-request";
 import { Posts } from "types/posts";
-import { GetStaticProps } from "next";
 import { Events } from "types/events";
+import graphCMS from "services/graphCMS";
 
 type HomePageProps = {
   posts: Posts;
@@ -24,9 +23,8 @@ function HomePage({ posts, events }: HomePageProps) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const graphcms = new GraphQLClient(process.env.GRAPHCMS_API);
-  const data = await graphcms.request(`{
+export async function getStaticProps() {
+  const data = await graphCMS(`{
     posts(orderBy: createdAt_ASC) {
       id
       title
@@ -50,6 +48,6 @@ export const getStaticProps: GetStaticProps = async () => {
   }`);
   const { posts, events } = data;
   return { props: { posts, events } };
-};
+}
 
 export default HomePage;

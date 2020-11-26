@@ -8,7 +8,7 @@ export type Post = {
     alt: string;
   };
   event: Event;
-  department: { name: string };
+  department: { name: string; uid: string };
   groups: Groups;
   id: string;
   content: { html: string };
