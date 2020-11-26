@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../styles/colors";
+import { colors } from "styles/colors";
 import NextLink from "next/link";
 import Breadcrumbs from "./Breadcrumbs";
 import { useRouter } from "next/router";
