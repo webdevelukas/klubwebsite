@@ -1,10 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import ResponsiveImage from "elements/ResponsiveImage";
 import { colors } from "styles/colors";
-BoardMember.propTypes = {};
-function BoardMember({ boardMember }) {
+
+type BoardMemberProps = {
+  boardMember: string;
+};
+
+function BoardMember({ boardMember }: BoardMemberProps) {
   return (
     <Container>
       <Image src={boardMember} />
@@ -13,12 +15,19 @@ function BoardMember({ boardMember }) {
     </Container>
   );
 }
+
 export default BoardMember;
+
 const Container = styled.article``;
-const Image = styled(ResponsiveImage)``;
+
+const Image = styled(ResponsiveImage)`
+  height: auto;
+`;
+
 const H2 = styled.h2`
   color: ${colors.main.default};
   text-transform: uppercase;
   line-height: 1.5rem;
 `;
+
 const Position = styled.p``;

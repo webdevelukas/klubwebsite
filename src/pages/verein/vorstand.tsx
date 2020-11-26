@@ -1,9 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import { colors } from "styles/colors";
 import BoardMember from "components/BoardMember";
-VorstandsPage.propTypes = {};
+
 const boardMembers = [
   "https://www.tsvpaunzhausen.de/files/5614/9493/6711/Katthagen.jpg",
   "https://www.tsvpaunzhausen.de/files/9914/9493/7771/Platzhalter.jpg",
@@ -11,7 +9,8 @@ const boardMembers = [
   "https://www.tsvpaunzhausen.de/files/8014/9493/6710/Gerold.jpg",
   "https://www.tsvpaunzhausen.de/files/5314/9493/6710/Beck.jpg",
 ];
-function VorstandsPage(props) {
+
+function VorstandsPage() {
   return (
     <Container>
       <Headline>Vorstand</Headline>
@@ -23,7 +22,9 @@ function VorstandsPage(props) {
     </Container>
   );
 }
+
 export default VorstandsPage;
+
 const Container = styled.div`
   background: white;
   padding: 2rem 1rem 4rem;
@@ -41,10 +42,4 @@ const Wrapper = styled.div`
   grid-auto-rows: 1fr;
   grid-auto-flow: row;
   grid-gap: 2rem;
-`;
-const TextContainer = styled.div`
-  padding: 1rem 2rem 0;
-`;
-const Content = styled.p`
-  margin-bottom: 1rem;
 `;
