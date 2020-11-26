@@ -1,8 +1,12 @@
-import React from "react";
 import styled from "styled-components";
 import FilestackImage from "elements/FilestackImage";
-Lightbox.propTypes = {};
-function Lightbox({ setShowLightbox, images }) {
+
+type LightboxProps = {
+  setShowLightbox: (showLightbox: boolean) => void;
+  images: [{ url: string; alt: string }];
+};
+
+function Lightbox({ setShowLightbox, images }: LightboxProps) {
   return (
     <Container>
       <Wrapper>
@@ -19,7 +23,9 @@ function Lightbox({ setShowLightbox, images }) {
     </Container>
   );
 }
+
 export default Lightbox;
+
 const ImageCount = styled.p`
   color: white;
 `;
@@ -53,6 +59,6 @@ const Container = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  overflow-y: scroll;
   padding: 2rem 1rem;
+  overflow-y: scroll;
 `;

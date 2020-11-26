@@ -1,18 +1,16 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import { colors } from "styles/colors";
-import Chips from "components/Chips";
-import Gallery from "components/Gallery";
+import Gallery from "components/images/Gallery";
 import FilestackImage from "elements/FilestackImage";
 import renderDate from "services/renderDate";
 import { GraphQLClient } from "graphql-request";
+import { Post } from "types/posts";
 
-const categories = ["1. Mannschaft", "Herren", "Fußball"];
+type NewsPageProps = {
+  post: Post;
+};
 
-NewsPage.propTypes = {};
-
-function NewsPage({ post }) {
+function NewsPage({ post }: NewsPageProps) {
   const { title, titleimage, content, event, author, images } = post;
   return (
     <>
@@ -28,7 +26,6 @@ function NewsPage({ post }) {
               __html: content.html,
             }}
           />
-          {/* <Chips categories={categories} /> */}
         </TextContainer>
         {images.length > 0 && (
           <>
