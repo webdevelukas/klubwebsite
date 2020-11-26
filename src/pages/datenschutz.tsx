@@ -1,28 +1,18 @@
-import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import { colors } from "styles/colors";
-import { getSingleType } from "lib/api";
-import markdownToHtml from "lib/markdownToHtml.js";
-Datenschutz.propTypes = {};
-function Datenschutz({ content }) {
+
+function Datenschutz() {
   const title = "Datenschutz";
   return (
     <Container>
       <TextContainer>
         <Headline>{title}</Headline>
-        <Content dangerouslySetInnerHTML={{ __html: content }} />
       </TextContainer>
     </Container>
   );
 }
 export default Datenschutz;
-export const getStaticProps = async () => {
-  const data = await getSingleType("datenschutz");
-  const content = await markdownToHtml(data?.content || "");
-  // const title = data.title;
-  return { props: { content } };
-};
+
 const Container = styled.div`
   background: white;
   padding: 2rem 0 4rem;

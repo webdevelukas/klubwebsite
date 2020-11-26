@@ -1,27 +1,16 @@
-import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import { colors } from "styles/colors";
-import { getSingleType } from "../lib/api";
-import markdownToHtml from "lib/markdownToHtml.js";
-Impressum.propTypes = {};
-function Impressum({ content, title }) {
+function Impressum() {
   return (
     <Container>
       <TextContainer>
-        <Headline>{title}</Headline>
-        <Content dangerouslySetInnerHTML={{ __html: content }} />
+        <Headline>Impressum</Headline>
       </TextContainer>
     </Container>
   );
 }
 export default Impressum;
-export const getStaticProps = async () => {
-  const data = await getSingleType("impressum");
-  const content = await markdownToHtml(data?.content || "");
-  const title = data.title;
-  return { props: { content, title } };
-};
+
 const Container = styled.div`
   background: white;
   padding: 2rem 0 4rem;

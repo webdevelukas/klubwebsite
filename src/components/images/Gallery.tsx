@@ -1,11 +1,14 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import { useState } from "react";
 import styled from "styled-components";
 import { colors } from "styles/colors";
-import Lightbox from "../components/Images/Lightbox";
+import Lightbox from "./Lightbox";
 import FilestackImage from "elements/FilestackImage";
-Gallery.propTypes = {};
-function Gallery({ images }) {
+
+type GalleryProps = {
+  images: [{ url: string; alt: string }];
+};
+
+function Gallery({ images }: GalleryProps) {
   const [showLightbox, setShowLightbox] = useState(false);
   return (
     <>
