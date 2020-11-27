@@ -86,5 +86,6 @@ const Headline = styled.h1`
 
 const Details = styled.p`
   margin: 0;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: lighter;
 `;
