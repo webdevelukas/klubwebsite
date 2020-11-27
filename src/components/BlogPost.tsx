@@ -1,22 +1,28 @@
 import styled from "styled-components";
 import { colors } from "../styles/colors";
 import renderDate from "services/renderDate";
-import FilestackImage from "elements/FilestackImage";
 import NextLink from "next/link";
 import { Posts } from "types/posts";
 import { Groups } from "types/groups";
+import NextImage from "next/image";
 
 type BlogPostProps = {
   posts: Posts;
 };
 
 function BlogPost({ posts }: BlogPostProps) {
-  const post = posts[0];
-  const { title, titleimage, event, department, groups, id } = post;
+  const newestPost = posts[0];
+  const { title, titleimage, event, department, groups, id } = newestPost;
   return (
     <Article>
       <Picture>
-        <Image src={titleimage.url} alt={titleimage.alt} />
+        <NextImage
+          src={titleimage.url}
+          alt={titleimage.alt}
+          layout="fill"
+          objectFit="cover"
+          priority
+        />
       </Picture>
       <TextContainer>
         <CategoryText>Top story</CategoryText>
@@ -28,28 +34,30 @@ function BlogPost({ posts }: BlogPostProps) {
         </NextLink>
         <Details>
           {renderDate(event.dateandtime)} {department && "-"} {department?.name}{" "}
-          {groups && "-"} {groups && renderGroupsWithSeperator(groups)}
+          {groups && `- ${renderGroupsWithSeperator(groups)}`}
         </Details>
       </TextContainer>
     </Article>
   );
 }
 export default BlogPost;
+
 function renderGroupsWithSeperator(groups: Groups) {
   const groupsWithSeperator = groups
     .map((group) => group.name)
     .reduce((previous, current) => previous + ", " + current);
   return groupsWithSeperator;
 }
-const Article = styled.article``;
+
+const Article = styled.article`
+  display: grid;
+  grid-template-rows: 18rem auto;
+`;
+
 const Picture = styled.picture`
-  display: flex;
+  position: relative;
 `;
-const Image = styled(FilestackImage)`
-  height: 18rem;
-  width: 100%;
-  object-fit: cover;
-`;
+
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -58,11 +66,13 @@ const TextContainer = styled.div`
   color: white;
   padding: 0.75rem;
 `;
+
 const CategoryText = styled.p`
   margin: 0;
   text-transform: uppercase;
   font-size: 0.875rem;
 `;
+
 const Headline = styled.h1`
   font-size: 1.25rem;
   text-transform: uppercase;
@@ -72,6 +82,7 @@ const Headline = styled.h1`
   -webkit-line-clamp: 2;
   overflow: hidden;
 `;
+
 const Details = styled.p`
   margin: 0;
   font-size: 0.75rem;
