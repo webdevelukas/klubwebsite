@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import { colors } from "../styles/colors";
+import { colors } from "styles/colors";
 import renderTime from "services/renderTime";
 import renderDayAndDate from "services/renderDayAndDate";
 import { Event } from "types/events";
+import NextImage from "next/image";
 
 type EventBoxProps = {
   event: Event;
@@ -20,8 +21,18 @@ function EventBox({ event }: EventBoxProps) {
         <AgeGroup>{group?.name}</AgeGroup>
       </Wrapper>
       <OpponentsContainer>
-        <Logo src="/tsv-paunzhausen.png" />
-        <Logo src="/tsv-paunzhausen.png" />
+        <NextImage
+          src="/tsv-paunzhausen.png"
+          width={1000}
+          height={1000}
+          objectFit="contain"
+        />
+        <NextImage
+          src="/tsv-paunzhausen.png"
+          width={1000}
+          height={1000}
+          objectFit="contain"
+        />
       </OpponentsContainer>
     </Article>
   );
@@ -69,15 +80,11 @@ const AgeGroup = styled.p`
 
 const OpponentsContainer = styled.div`
   position: absolute;
+  width: 40%;
   right: 0.75rem;
   bottom: 0.5rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 2.75rem;
   grid-column-gap: 0.5rem;
-`;
-
-const Logo = styled.img`
-  height: 2.75rem;
-  width: auto;
-  object-fit: contain;
 `;

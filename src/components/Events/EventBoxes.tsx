@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import EventBox from "../EventBox";
+import EventBox from "./EventBox";
 import ComponentSection from "elements/ComponentSection";
 import { Events } from "types/events";
 
