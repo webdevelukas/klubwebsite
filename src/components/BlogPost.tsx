@@ -21,6 +21,7 @@ function BlogPost({ posts }: BlogPostProps) {
           alt={titleimage.alt}
           layout="fill"
           objectFit="cover"
+          quality={40}
           priority
         />
       </Picture>
