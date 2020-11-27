@@ -6,17 +6,17 @@ type SectionProps = {
   children: React.ReactNode;
 };
 
-function Section({ title, children }: SectionProps) {
+function ComponentSection({ title, children }: SectionProps) {
   return (
-    <SectionStyled>
+    <Section>
       {title && <Headline>{title}</Headline>}
       {children}
-    </SectionStyled>
+    </Section>
   );
 }
-export default Section;
+export default ComponentSection;
 
-const SectionStyled = styled.section`
+const Section = styled.section`
   margin-top: 2rem;
   display: grid;
   grid-template-rows: auto 1fr;

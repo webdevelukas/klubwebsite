@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Partner from "../Partner";
-import ComponentSection from "../../elements/Section";
+import ComponentSection from "elements/ComponentSection";
 
 const partnersLogos = [
   "https://www.tsvpaunzhausen.de/files/5514/2298/8029/ELGAKU_Logo_quad_RGB.png",
