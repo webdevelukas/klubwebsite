@@ -25,7 +25,7 @@ function HomePage({ posts, events }: HomePageProps) {
 
 export async function getStaticProps() {
   const data = await graphCMS(`{
-    posts(orderBy: createdAt_ASC) {
+    posts(orderBy: createdAt_DESC) {
       id
       title
       titleimage {
