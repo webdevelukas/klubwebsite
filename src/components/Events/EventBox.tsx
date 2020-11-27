@@ -18,7 +18,7 @@ function EventBox({ event }: EventBoxProps) {
       <Time>{renderTime(event?.dateandtime)} Uhr</Time>
       <Wrapper>
         <SportsPictogram src="/pictogram.svg" />
-        <AgeGroup>{group?.name}</AgeGroup>
+        {group && <AgeGroup>{group.name}</AgeGroup>}
       </Wrapper>
       <OpponentsContainer>
         <NextImage
@@ -44,14 +44,16 @@ const Article = styled.article`
   position: relative;
   padding: 1rem;
   background: white;
-  border-bottom: 0.25rem solid ${colors.secondary};
+  border-bottom: 0.25rem solid ${colors.main.default};
 `;
 
 const Date = styled.p`
   font-size: 1.75rem;
+  line-height: 1.75rem;
   font-weight: bold;
   color: ${colors.main.default};
   text-transform: uppercase;
+  margin-bottom: 0.5rem;
 `;
 
 const Time = styled.p`
@@ -61,10 +63,11 @@ const Time = styled.p`
 `;
 
 const Wrapper = styled.div`
-  margin-top: 0.75rem;
+  margin-top: 1.5rem;
   display: grid;
   grid-template-columns: auto 1fr;
   grid-column-gap: 0.5rem;
+  max-width: 60%;
 `;
 
 const SportsPictogram = styled.img`
@@ -75,14 +78,15 @@ const SportsPictogram = styled.img`
 `;
 
 const AgeGroup = styled.p`
-  align-self: end;
+  align-self: center;
+  line-height: 1rem;
 `;
 
 const OpponentsContainer = styled.div`
   position: absolute;
   width: 40%;
   right: 0.75rem;
-  bottom: 0.5rem;
+  bottom: 0.75rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 2.75rem;
