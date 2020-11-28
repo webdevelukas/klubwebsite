@@ -22,7 +22,7 @@ function EventBox({ event }: EventBoxProps) {
       </Wrapper>
       <OpponentsContainer>
         <NextImage
-          src="/TSV-Paunzhausen.png"
+          src="/tsv-paunzhausen.png"
           width={1000}
           height={1000}
           objectFit="contain"
