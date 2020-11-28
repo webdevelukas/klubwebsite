@@ -4,12 +4,14 @@ import GlobalStyles from "../../styles/GlobalStyles";
 import PartnersSection from "../sections/PartnersSection";
 import styled from "styled-components";
 import Head from "next/head";
+import { Partners } from "types/partners";
 
 type PageLayoutProps = {
   children: React.ReactNode;
+  partners: Partners;
 };
 
-function PageLayout({ children }: PageLayoutProps) {
+function PageLayout({ children, partners }: PageLayoutProps) {
   return (
     <Layout>
       <Head>
@@ -25,7 +27,7 @@ function PageLayout({ children }: PageLayoutProps) {
       <GlobalStyles />
       <NavigationContainer />
       <main>{children}</main>
-      <PartnersSection />
+      <PartnersSection partners={partners} />
       <Footer />
     </Layout>
   );

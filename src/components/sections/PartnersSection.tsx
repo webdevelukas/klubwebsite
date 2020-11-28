@@ -1,22 +1,18 @@
 import styled from "styled-components";
-import Partner from "../Partner";
+import PartnerComponent from "../PartnerComponent";
 import ComponentSection from "elements/ComponentSection";
+import { Partners } from "types/partners";
 
-const partnersLogos = [
-  "https://www.tsvpaunzhausen.de/files/5514/2298/8029/ELGAKU_Logo_quad_RGB.png",
-  "https://www.tsvpaunzhausen.de/files/3815/1130/1930/Logo_Aschauer_RGB.png",
-  "https://www.tsvpaunzhausen.de/files/6414/2298/8030/Munich_airport_2015_RGB.png",
-  "https://www.tsvpaunzhausen.de/files/5514/2298/8029/Logo_MERL_quad_RGB.png",
-  "https://www.tsvpaunzhausen.de/files/8614/2298/7933/Beck_AVM_logo_2013_RGB.png",
-  "https://deinklub.de/wp-content/uploads/2018/11/deinklub_logo-weiss-vektor.svg",
-];
+type PartnersSectionProps = {
+  partners: Partners;
+};
 
-function PartnersSection() {
+function PartnersSection({ partners }: PartnersSectionProps) {
   return (
     <ComponentSection title="Unsere Partner">
       <Container>
-        {partnersLogos.map((logoUrl, index) => (
-          <Partner key={index} logoUrl={logoUrl} />
+        {partners.map((partner, index) => (
+          <PartnerComponent key={index} partner={partner} />
         ))}
       </Container>
     </ComponentSection>
