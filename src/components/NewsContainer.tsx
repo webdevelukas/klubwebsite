@@ -11,7 +11,7 @@ type NewsContainerProps = {
 function NewsContainer({ posts }: NewsContainerProps) {
   return (
     <Container>
-      {posts.map((post, index) => (
+      {posts.slice(1).map((post, index) => (
         <SingleBlogPost key={index} index={index} post={post} />
       ))}
     </Container>

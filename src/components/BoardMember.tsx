@@ -1,17 +1,25 @@
 import styled from "styled-components";
-import ResponsiveImage from "elements/ResponsiveImage";
 import { colors } from "styles/colors";
+import { Author } from "types/author";
+import NextImage from "next/image";
 
 type BoardMemberProps = {
-  boardMember: string;
+  boardMember: Author;
 };
 
 function BoardMember({ boardMember }: BoardMemberProps) {
+  const { name, position, image } = boardMember;
+
   return (
     <Container>
-      <Image src={boardMember} />
-      <H2>1. Vorstand</H2>
-      <Position>Marco Katthagen</Position>
+      <NextImage
+        src={image.url}
+        width={image.width}
+        height={image.height}
+        layout="responsive"
+      />
+      <H2>{position}</H2>
+      <Position>{name}</Position>
     </Container>
   );
 }
@@ -20,14 +28,11 @@ export default BoardMember;
 
 const Container = styled.article``;
 
-const Image = styled(ResponsiveImage)`
-  height: auto;
-`;
-
 const H2 = styled.h2`
   color: ${colors.main.default};
   text-transform: uppercase;
   line-height: 1.5rem;
+  margin-top: 0.5rem;
 `;
 
 const Position = styled.p``;

@@ -28,4 +28,11 @@ button, input, select, textarea {
   padding: unset;
 }
 p, h1, h2, h3, h4, h5, h6 {margin:0;}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
 `;

@@ -34,12 +34,16 @@ function NewsPage({ post }: NewsPageProps) {
             <Gallery images={images} />
           </>
         )}
-        <HorizontalLine />
-        <AuthorContainer>
-          <AuthorImage src={author.image.url} />
-          <Author>{author.name}</Author>
-          <AuthorRole>{author.position}</AuthorRole>
-        </AuthorContainer>
+        {author && (
+          <>
+            <HorizontalLine />
+            <AuthorContainer>
+              <AuthorImage src={author.image.url} />
+              <Author>{author.name}</Author>
+              <AuthorRole>{author.position}</AuthorRole>
+            </AuthorContainer>
+          </>
+        )}
       </Container>
     </>
   );

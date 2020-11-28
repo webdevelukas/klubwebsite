@@ -1,6 +1,6 @@
 import BlogPost from "components/BlogPost";
-import EventsSection from "components/sections/EventsSection";
-import Section from "elements/Section";
+import EventBoxes from "components/Events/EventBoxes";
+import ComponentSection from "elements/ComponentSection";
 import NewsContainer from "components/NewsContainer";
 import { Posts } from "types/posts";
 import { Events } from "types/events";
@@ -15,17 +15,17 @@ function HomePage({ posts, events }: HomePageProps) {
   return (
     <>
       <BlogPost posts={posts} />
-      <EventsSection events={events} />
-      <Section title="News">
+      <EventBoxes events={events} />
+      <ComponentSection title="News">
         <NewsContainer posts={posts} />
-      </Section>
+      </ComponentSection>
     </>
   );
 }
 
 export async function getStaticProps() {
   const data = await graphCMS(`{
-    posts(orderBy: createdAt_ASC) {
+    posts(orderBy: createdAt_DESC) {
       id
       title
       titleimage {

@@ -1,26 +1,42 @@
 import styled from "styled-components";
 import { colors } from "styles/colors";
 import BoardMember from "components/BoardMember";
+import graphCMS from "services/graphCMS";
+import { Authors } from "types/author";
 
-const boardMembers = [
-  "https://www.tsvpaunzhausen.de/files/5614/9493/6711/Katthagen.jpg",
-  "https://www.tsvpaunzhausen.de/files/9914/9493/7771/Platzhalter.jpg",
-  "https://www.tsvpaunzhausen.de/files/3814/9493/6624/Wrobel.jpg",
-  "https://www.tsvpaunzhausen.de/files/8014/9493/6710/Gerold.jpg",
-  "https://www.tsvpaunzhausen.de/files/5314/9493/6710/Beck.jpg",
-];
+type VorstandsPageProps = {
+  boardMembers: Authors;
+};
 
-function VorstandsPage() {
+function VorstandsPage({ boardMembers }: VorstandsPageProps) {
   return (
     <Container>
       <Headline>Vorstand</Headline>
       <Wrapper>
-        {boardMembers.map((boardMember) => (
-          <BoardMember key={boardMember} boardMember={boardMember} />
+        {boardMembers.map((boardMember, index) => (
+          <BoardMember key={index} boardMember={boardMember} />
         ))}
       </Wrapper>
     </Container>
   );
+}
+
+export async function getStaticProps() {
+  const { authors: boardMembers } = await graphCMS(`{
+    authors(where: {boardMember: true}) {
+      name
+      position
+      boardMember
+      image {
+        url
+        alt
+        width
+        height
+      }
+    }
+  }
+  `);
+  return { props: { boardMembers } };
 }
 
 export default VorstandsPage;
