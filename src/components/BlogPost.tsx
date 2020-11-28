@@ -14,31 +14,37 @@ function BlogPost({ posts }: BlogPostProps) {
   const newestPost = posts[0];
   const { title, titleimage, event, department, groups, id } = newestPost;
   return (
-    <Article>
-      <Picture>
-        <NextImage
-          src={titleimage.url}
-          alt={titleimage.alt}
-          layout="fill"
-          objectFit="cover"
-          quality={40}
-          priority
-        />
-      </Picture>
-      <TextContainer>
-        <CategoryText>Top story</CategoryText>
-        <NextLink
-          href="/news/[abteilung]/[title][id]"
-          as={`/news/fussball/${id}`}
-        >
-          <Headline>{title}</Headline>
-        </NextLink>
-        <Details>
-          {renderDate(event.dateandtime)} {department && "-"} {department?.name}{" "}
-          {groups && `- ${renderGroupsWithSeperator(groups)}`}
-        </Details>
-      </TextContainer>
-    </Article>
+    <NextLink
+      href="/news/[abteilung]/[title][id]"
+      as={`/news/fussball/${id}`}
+      passHref
+    >
+      <a>
+        <Article>
+          <Picture>
+            <NextImage
+              src={titleimage.url}
+              alt={titleimage.alt}
+              layout="fill"
+              objectFit="cover"
+              quality={40}
+              priority
+            />
+          </Picture>
+          <TextContainer>
+            <CategoryText>Top story</CategoryText>
+
+            <Headline>{title}</Headline>
+
+            <Details>
+              {renderDate(event.dateandtime)} {department && "-"}{" "}
+              {department?.name}{" "}
+              {groups && `- ${renderGroupsWithSeperator(groups)}`}
+            </Details>
+          </TextContainer>
+        </Article>{" "}
+      </a>
+    </NextLink>
   );
 }
 export default BlogPost;

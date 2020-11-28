@@ -29,8 +29,11 @@ function SingleBlogPost({ index, post }: SingleBlogPostProps) {
         <NextLink
           href="/news/[abteilung]/[title][id]"
           as={`/news/fussball/${id}`}
+          passHref
         >
-          <Headline>{title}</Headline>
+          <a>
+            <Headline>{title}</Headline>
+          </a>
         </NextLink>
         <Date>{renderDate(event.dateandtime)}</Date>
         {firstPost && groups && <Chips groups={groups} />}

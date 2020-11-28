@@ -22,13 +22,13 @@ function EventBox({ event }: EventBoxProps) {
       </Wrapper>
       <OpponentsContainer>
         <NextImage
-          src="/tsv-paunzhausen.png"
+          src="/TSV-Paunzhausen.png"
           width={1000}
           height={1000}
           objectFit="contain"
         />
         <NextImage
-          src="/tsv-paunzhausen.png"
+          src="/TSV-Au.png"
           width={1000}
           height={1000}
           objectFit="contain"
@@ -67,7 +67,7 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-columns: auto 1fr;
   grid-column-gap: 0.5rem;
-  max-width: 60%;
+  max-width: 50%;
 `;
 
 const SportsPictogram = styled.img`
@@ -84,11 +84,11 @@ const AgeGroup = styled.p`
 
 const OpponentsContainer = styled.div`
   position: absolute;
-  width: 40%;
+  width: 45%;
   right: 0.75rem;
   bottom: 0.75rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 2.75rem;
-  grid-column-gap: 0.5rem;
+  grid-column-gap: 0.25rem;
 `;
