@@ -1,5 +1,4 @@
 import BlogPost from "components/news/BlogPost";
-import EventBoxes from "components/events/EventBoxes";
 import NewsContainer from "components/news/NewsContainer";
 import { Posts } from "types/posts";
 import { Events } from "types/events";
@@ -7,6 +6,7 @@ import graphCMS from "services/graphCMS";
 import styled from "styled-components";
 import NewsletterContainer from "components/NewsletterContainer";
 import BlogPosts from "components/news/BlogPosts";
+import EventBoxes from "components/events/EventBoxes";
 
 type HomePageProps = {
   posts: Posts;
