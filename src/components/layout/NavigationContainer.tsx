@@ -7,7 +7,7 @@ function NavigationContainer() {
   return (
     <>
       <NavigationBar setOpen={setOpen} />
-      <Navigation open={open} setOpen={setOpen} />
+      {/* <Navigation open={open} setOpen={setOpen} /> */}
     </>
   );
 }

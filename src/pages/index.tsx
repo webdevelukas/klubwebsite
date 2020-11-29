@@ -1,10 +1,12 @@
-import BlogPost from "components/BlogPost";
-import EventBoxes from "components/Events/EventBoxes";
-import NewsContainer from "components/NewsContainer";
+import BlogPost from "components/news/BlogPost";
+import EventBoxes from "components/events/EventBoxes";
+import NewsContainer from "components/news/NewsContainer";
 import { Posts } from "types/posts";
 import { Events } from "types/events";
 import graphCMS from "services/graphCMS";
 import styled from "styled-components";
+import NewsletterContainer from "components/NewsletterContainer";
+import BlogPosts from "components/news/BlogPosts";
 
 type HomePageProps = {
   posts: Posts;
@@ -18,6 +20,8 @@ function HomePage({ posts, events }: HomePageProps) {
       <EventBoxes events={events} />
       <NewsContainer posts={posts} />
       <AdContainer>AdContainer</AdContainer>
+      <NewsletterContainer />
+      <BlogPosts posts={posts} />
     </PageLayout>
   );
 }
@@ -57,17 +61,21 @@ const PageLayout = styled.div`
     "blogpost"
     "eventboxes"
     "newscontainer"
-    "adcontainer";
+    "adcontainer"
+    "newslettercontainer"
+    "blogposts";
   grid-gap: 2rem;
 
   @media screen and (min-width: 1100px) {
     margin-top: 2rem;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto 1fr auto auto auto;
     grid-template-areas:
+      "blogpost blogpost adcontainer"
       "blogpost blogpost newscontainer"
-      "blogpost blogpost newscontainer"
-      "eventboxes eventboxes adcontainer";
+      "eventboxes eventboxes newscontainer"
+      "newslettercontainer newslettercontainer newslettercontainer"
+      "blogposts blogposts blogposts";
   }
 `;
 

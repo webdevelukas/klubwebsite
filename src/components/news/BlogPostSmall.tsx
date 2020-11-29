@@ -1,18 +1,16 @@
 import styled from "styled-components";
-import { colors } from "../styles/colors";
 import renderDate from "services/renderDate";
 import NextLink from "next/link";
-import { Posts } from "types/posts";
+import { Post } from "types/posts";
 import { Groups } from "types/groups";
 import NextImage from "next/image";
 
-type BlogPostProps = {
-  posts: Posts;
+type BlogPostSmallProps = {
+  post: Post;
 };
 
-function BlogPost({ posts }: BlogPostProps) {
-  const newestPost = posts[0];
-  const { title, titleimage, event, department, groups, id } = newestPost;
+function BlogPostSmall({ post }: BlogPostSmallProps) {
+  const { title, titleimage, event, department, groups, id } = post;
   return (
     <Article>
       <Picture>
@@ -21,7 +19,7 @@ function BlogPost({ posts }: BlogPostProps) {
           alt={titleimage.alt}
           layout="fill"
           objectFit="cover"
-          quality={40}
+          quality={30}
           priority
         />
       </Picture>
@@ -32,8 +30,6 @@ function BlogPost({ posts }: BlogPostProps) {
       >
         <a>
           <TextContainer>
-            <CategoryText>Top story</CategoryText>
-
             <Headline>{title}</Headline>
 
             <Details>
@@ -47,7 +43,7 @@ function BlogPost({ posts }: BlogPostProps) {
     </Article>
   );
 }
-export default BlogPost;
+export default BlogPostSmall;
 
 function renderGroupsWithSeperator(groups: Groups) {
   const groupsWithSeperator = groups
@@ -57,9 +53,9 @@ function renderGroupsWithSeperator(groups: Groups) {
 }
 
 const Article = styled.article`
+  position: relative;
   display: grid;
-  grid-template-rows: minmax(18rem, 1fr) auto;
-  grid-area: blogpost;
+  grid-template-rows: minmax(16rem, 1fr) auto;
 `;
 
 const Picture = styled.picture`
@@ -71,20 +67,16 @@ const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: ${colors.main.default};
-  color: white;
+  background: white;
   padding: 0.75rem;
-`;
 
-const CategoryText = styled.p`
-  margin: 0;
-  text-transform: uppercase;
-  font-size: 0.875rem;
+  @media screen and (min-width: 1100px) {
+    padding: 1.5rem;
+  }
 `;
 
 const Headline = styled.h1`
   font-size: 1.25rem;
-  text-transform: uppercase;
   line-height: 1.5rem;
   display: -webkit-box;
   -webkit-box-orient: vertical;

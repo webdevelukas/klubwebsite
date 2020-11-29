@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Chips from "./Chips";
+import Chips from "../Chips";
 import NextLink from "next/link";
 import renderDate from "services/renderDate";
 import { Post } from "types/posts";

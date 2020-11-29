@@ -26,7 +26,7 @@ function Footer() {
 export default Footer;
 
 const Container = styled.div`
-  margin-top: 6rem;
+  margin-top: 4rem;
   a {
     color: white;
   }
