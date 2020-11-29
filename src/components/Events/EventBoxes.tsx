@@ -12,7 +12,8 @@ function EventBoxes({ events }: EventBoxesProps) {
     <Wrapper>
       <Headline>Events</Headline>
       <Container>
-        <GreyOverlay />
+        <GreyOverlay left />
+        <GreyOverlay right />
         {events.map((event, index) => (
           <EventBox key={index} event={event} />
         ))}
@@ -59,17 +60,26 @@ const Container = styled.div`
     }
   }
 
+  article:first-of-type {
+    z-index: 2;
+  }
+
   article:last-of-type {
     z-index: 2;
   }
 `;
 
-const GreyOverlay = styled.div`
+const GreyOverlay = styled.div<{ left?: boolean; right?: boolean }>`
   position: absolute;
-  right: 0;
+  left: ${({ left }) => (left ? 0 : null)};
+  right: ${({ right }) => (right ? 0 : null)};
   height: 100%;
   width: 2rem;
-  background: linear-gradient(to left, ${colors.neutral}, rgba(0, 0, 0, 0));
+  background: linear-gradient(
+    to ${({ left }) => (left ? "right" : "left")},
+    ${colors.neutral},
+    rgba(0, 0, 0, 0)
+  );
   z-index: 1;
 `;
 
