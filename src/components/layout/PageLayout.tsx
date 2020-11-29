@@ -26,7 +26,7 @@ function PageLayout({ children, partners }: PageLayoutProps) {
       </Head>
       <GlobalStyles />
       <NavigationContainer />
-      <main>{children}</main>
+      <Main>{children}</Main>
       <PartnersSection partners={partners} />
       <Footer />
     </Layout>
@@ -37,4 +37,9 @@ export default PageLayout;
 
 const Layout = styled.div`
   height: 100vh;
+`;
+
+const Main = styled.main`
+  max-width: 1200px;
+  margin: 0 auto;
 `;

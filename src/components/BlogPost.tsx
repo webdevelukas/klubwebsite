@@ -14,23 +14,23 @@ function BlogPost({ posts }: BlogPostProps) {
   const newestPost = posts[0];
   const { title, titleimage, event, department, groups, id } = newestPost;
   return (
-    <NextLink
-      href="/news/[abteilung]/[title][id]"
-      as={`/news/fussball/${id}`}
-      passHref
-    >
-      <a>
-        <Article>
-          <Picture>
-            <NextImage
-              src={titleimage.url}
-              alt={titleimage.alt}
-              layout="fill"
-              objectFit="cover"
-              quality={40}
-              priority
-            />
-          </Picture>
+    <Article>
+      <Picture>
+        <NextImage
+          src={titleimage.url}
+          alt={titleimage.alt}
+          layout="fill"
+          objectFit="cover"
+          quality={40}
+          priority
+        />
+      </Picture>
+      <NextLink
+        href="/news/[abteilung]/[title][id]"
+        as={`/news/fussball/${id}`}
+        passHref
+      >
+        <a>
           <TextContainer>
             <CategoryText>Top story</CategoryText>
 
@@ -42,9 +42,9 @@ function BlogPost({ posts }: BlogPostProps) {
               {groups && `- ${renderGroupsWithSeperator(groups)}`}
             </Details>
           </TextContainer>
-        </Article>{" "}
-      </a>
-    </NextLink>
+        </a>
+      </NextLink>
+    </Article>
   );
 }
 export default BlogPost;
@@ -58,11 +58,13 @@ function renderGroupsWithSeperator(groups: Groups) {
 
 const Article = styled.article`
   display: grid;
-  grid-template-rows: 18rem auto;
+  grid-template-rows: minmax(18rem, 1fr) auto;
+  grid-area: blogpost;
 `;
 
 const Picture = styled.picture`
   position: relative;
+  height: 100%;
 `;
 
 const TextContainer = styled.div`

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import PartnerComponent from "../PartnerComponent";
-import ComponentSection from "elements/ComponentSection";
 import { Partners } from "types/partners";
+import { colors } from "styles/colors";
 
 type PartnersSectionProps = {
   partners: Partners;
@@ -9,13 +9,14 @@ type PartnersSectionProps = {
 
 function PartnersSection({ partners }: PartnersSectionProps) {
   return (
-    <ComponentSection title="Unsere Partner">
+    <Wrapper>
+      <Headline>Unsere Partner</Headline>
       <Container>
         {partners.map((partner, index) => (
           <PartnerComponent key={index} partner={partner} />
         ))}
       </Container>
-    </ComponentSection>
+    </Wrapper>
   );
 }
 
@@ -26,4 +27,19 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
   grid-gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+`;
+
+const Headline = styled.h2`
+  font-size: 1rem;
+  text-transform: uppercase;
+  justify-self: center;
+  color: ${colors.main.default};
+  text-align: center;
+  margin-bottom: 1rem;
+`;
+
+const Wrapper = styled.div`
+  margin-top: 6rem;
 `;
