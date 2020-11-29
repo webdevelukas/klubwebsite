@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import EventBox from "./EventBox";
-import ComponentSection from "elements/ComponentSection";
 import { Events } from "types/events";
+import { colors } from "styles/colors";
 
 type EventBoxesProps = {
   events: Events;
@@ -9,17 +9,28 @@ type EventBoxesProps = {
 
 function EventBoxes({ events }: EventBoxesProps) {
   return (
-    <ComponentSection title="Kommende Events">
+    <Wrapper>
+      <Headline>Events</Headline>
       <Container>
+        <GreyOverlay />
         {events.map((event, index) => (
           <EventBox key={index} event={event} />
         ))}
+        <ShowMoreEventsBox>
+          <b>Mehr Events {`>`}</b>
+        </ShowMoreEventsBox>
       </Container>
-    </ComponentSection>
+    </Wrapper>
   );
 }
 
 export default EventBoxes;
+
+const Wrapper = styled.div`
+  display: grid;
+  grid-area: eventboxes;
+  position: relative;
+`;
 
 const Container = styled.div`
   display: grid;
@@ -38,4 +49,48 @@ const Container = styled.div`
     content: "";
     width: 1rem;
   }
+
+  @media screen and (min-width: 1100px) {
+    padding: 0 2rem 0 0;
+
+    ::after {
+      content: unset;
+      width: unset;
+    }
+  }
+
+  article:last-of-type {
+    z-index: 2;
+  }
+`;
+
+const GreyOverlay = styled.div`
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 2rem;
+  background: linear-gradient(to left, ${colors.neutral}, rgba(0, 0, 0, 0));
+  z-index: 1;
+`;
+
+const Headline = styled.h2`
+  font-size: 1rem;
+  text-transform: uppercase;
+  justify-self: center;
+  color: ${colors.main.default};
+  text-align: center;
+  margin-bottom: 0.5rem;
+
+  @media screen and (min-width: 1100px) {
+    display: none;
+  }
+`;
+
+const ShowMoreEventsBox = styled.article`
+  background-color: ${colors.secondary};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.25rem;
 `;
