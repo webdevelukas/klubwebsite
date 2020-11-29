@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import EventBox from "./EventBox";
 import { Events } from "types/events";
 import { colors } from "styles/colors";
+import EventBox from "./EventBox";
 
 type EventBoxesProps = {
   events: Events;
