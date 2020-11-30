@@ -7,6 +7,7 @@ import styled from "styled-components";
 import NewsletterContainer from "components/NewsletterContainer";
 import BlogPosts from "components/news/BlogPosts";
 import EventBoxes from "components/events/EventBoxes";
+import NextImage from "next/image";
 
 type HomePageProps = {
   posts: Posts;
@@ -19,7 +20,14 @@ function HomePage({ posts, events }: HomePageProps) {
       <BlogPost posts={posts} />
       <EventBoxes events={events} />
       <NewsContainer posts={posts} />
-      <AdContainer>AdContainer</AdContainer>
+      <AdContainer>
+        <NextImage
+          src="/deinklub-ad2.png"
+          width="376"
+          height="152"
+          quality={100}
+        />
+      </AdContainer>
       <NewsletterContainer />
       <BlogPosts posts={posts} />
     </PageLayout>
@@ -82,7 +90,7 @@ const PageLayout = styled.div`
 const AdContainer = styled.aside`
   background: rgb(7, 31, 18);
   grid-area: adcontainer;
-  height: 150px;
+  height: 152px;
   display: flex;
   align-items: center;
   justify-content: center;
