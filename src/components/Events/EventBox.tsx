@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { colors } from "styles/colors";
 import renderTime from "services/renderTime";
 import renderDayAndDate from "services/renderDayAndDate";
-import { Event } from "types/events";
+import type { Event } from "types";
 import NextImage from "next/image";
 
 type EventBoxProps = {

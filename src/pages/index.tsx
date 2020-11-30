@@ -1,7 +1,6 @@
 import BlogPost from "components/news/BlogPost";
 import NewsContainer from "components/news/NewsContainer";
-import { Posts } from "types/posts";
-import { Events } from "types/events";
+import type { Posts, Events } from "types";
 import graphCMS from "services/graphCMS";
 import styled from "styled-components";
 import NewsletterContainer from "components/NewsletterContainer";
