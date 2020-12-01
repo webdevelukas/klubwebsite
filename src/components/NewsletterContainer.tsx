@@ -19,6 +19,7 @@ const Container = styled.section`
   grid-area: newslettercontainer;
   background-color: ${colors.main.default};
   padding: 2rem;
+  box-shadow: 0 0.25rem 0 ${colors.main.shadow};
 
   grid-row-gap: 1rem;
 

@@ -60,6 +60,7 @@ const Article = styled.article`
   display: grid;
   grid-template-rows: minmax(18rem, 1fr) auto;
   grid-area: blogpost;
+  box-shadow: 0 0.25rem 0 ${colors.main.shadow};
 `;
 
 const Picture = styled.picture`
