@@ -6,8 +6,8 @@ function NavigationContainer() {
   const [open, setOpen] = useState<boolean>(false);
   return (
     <>
-      <NavigationBar setOpen={setOpen} />
-      {/* <Navigation open={open} setOpen={setOpen} /> */}
+      <NavigationBar open={open} setOpen={setOpen} />
+      <Navigation open={open} />
     </>
   );
 }
