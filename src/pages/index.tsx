@@ -74,7 +74,6 @@ const PageLayout = styled.div`
   grid-gap: 2rem;
 
   @media screen and (min-width: 1100px) {
-    margin-top: 2rem;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto 1fr auto auto auto;
     grid-template-areas:

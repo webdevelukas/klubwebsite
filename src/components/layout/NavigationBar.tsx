@@ -3,6 +3,8 @@ import { colors } from "styles/colors";
 import NextLink from "next/link";
 import Breadcrumbs from "./Breadcrumbs";
 import { useRouter } from "next/router";
+import useScrollPosition from "hooks/useScrollPosition";
+import { useEffect } from "react";
 
 type NavigationBarProps = {
   open: boolean;
@@ -10,11 +12,16 @@ type NavigationBarProps = {
 };
 
 function NavigationBar({ open, setOpen }: NavigationBarProps) {
+  const {
+    headerIsVisible,
+    scrollPositionIsNearTopOfPage,
+  } = useScrollPosition();
+
   const router = useRouter();
   const breadcrumbs = router.asPath.split("/");
   return (
-    <>
-      <Header open={open}>
+    <Wrapper>
+      <Header open={open} headerIsVisible={headerIsVisible}>
         <NextLink href="/" passHref>
           <a>
             <Logo src="/tsv-paunzhausen.png" alt="club logo" />
@@ -27,16 +34,25 @@ function NavigationBar({ open, setOpen }: NavigationBarProps) {
           <Span open={open}>Menü</Span>
         </MenuButton>
       </Header>
-      {router.route !== "/" && (
+      {/* {router.route !== "/" && (
         <Breadcrumbs breadcrumbs={breadcrumbs} route={router.route} />
-      )}
-    </>
+      )} */}
+    </Wrapper>
   );
 }
 export default NavigationBar;
 
-const Header = styled.header<{ open: boolean }>`
+const Wrapper = styled.div`
   position: relative;
+  margin-bottom: 4.5rem;
+
+  @media screen and (min-width: 1100px) {
+    margin-bottom: 6.5rem;
+  }
+`;
+
+const Header = styled.header<{ open: boolean; headerIsVisible: boolean }>`
+  position: fixed;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
@@ -47,6 +63,13 @@ const Header = styled.header<{ open: boolean }>`
   background: ${colors.main.default};
   box-shadow: 0 0.25rem 0 ${colors.main.shadow};
   z-index: 2000;
+  transition: all 150ms ease-in-out;
+  top: 0;
+
+  visibility: ${({ headerIsVisible }) =>
+    headerIsVisible ? "visible" : "hidden"};
+  transform: ${({ headerIsVisible }) =>
+    headerIsVisible ? "none" : "translate(0, -100%)"};
 `;
 
 const Logo = styled.img`

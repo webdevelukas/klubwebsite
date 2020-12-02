@@ -1,21 +1,27 @@
+import useScrollPosition from "hooks/useScrollPosition";
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { colors } from "styles/colors";
+import NextLink from "next/link";
 
 type NavigationProps = {
   open: boolean;
 };
 
 function Navigation({ open }: NavigationProps) {
+  const { scrollPosition } = useScrollPosition();
+
   useEffect(() => {
+    const body = document.body;
+
     if (typeof window !== "undefined" && open) {
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${window.scrollY}px`;
+      body.style.position = "fixed";
+      body.style.top = `-${scrollPosition}px`;
     }
     if (typeof window !== "undefined" && !open) {
-      const scrollY = document.body.style.top;
-      document.body.style.position = "";
-      document.body.style.top = "";
+      const scrollY = body.style.top;
+      body.style.position = "";
+      body.style.top = "";
       window.scrollTo(0, parseInt(scrollY || "0") * -1);
     }
   }, [open]);
@@ -23,26 +29,11 @@ function Navigation({ open }: NavigationProps) {
   return (
     <Nav open={open}>
       <ul>
-        <li>Hallo</li>
-        <li>Hallo</li>
-        <li>Hallo</li>
-        <li>Hallo</li>
-        <li>Hallo</li>
-        <li>Hallo</li>
-        <li>Hallo</li>
-        <li>Hallo</li>
-        <li>Hallo</li>
-        <li>Hallo</li>
-        <li>Hallo</li>
-        <li>Hallo</li>
-        <li>Hallo</li>
-        <li>Hallo</li>
-        <li>Hallo</li>
-        <li>Hallo</li>
-        <li>Hallo</li>
-        <li>Hallo</li>
-        <li>Hallo</li>
-        <li>letzter</li>
+        <li>
+          <NextLink href="/verein/vorstand" passHref>
+            <a>Link </a>
+          </NextLink>
+        </li>
       </ul>
     </Nav>
   );
