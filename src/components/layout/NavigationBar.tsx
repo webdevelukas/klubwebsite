@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useRouter } from "next/router";
 import useScrollPosition from "hooks/useScrollPosition";
 import useMediaQuery from "hooks/useMediaQuery";
 import { MobileHeader, DesktopHeader } from "./Header";
@@ -13,7 +12,6 @@ function NavigationBar({ open, setOpen }: NavigationBarProps) {
   const { headerIsVisible } = useScrollPosition();
   const [matchesMediaQuery] = useMediaQuery(`(min-width: 1100px)`);
 
-  const router = useRouter();
   return (
     <Wrapper>
       {!matchesMediaQuery && (
