@@ -13,7 +13,7 @@ type PageLayoutProps = {
 
 function PageLayout({ children, partners }: PageLayoutProps) {
   return (
-    <Layout>
+    <>
       <Head>
         <meta
           name="viewport"
@@ -29,15 +29,11 @@ function PageLayout({ children, partners }: PageLayoutProps) {
       <Main>{children}</Main>
       <PartnersSection partners={partners} />
       <Footer />
-    </Layout>
+    </>
   );
 }
 
 export default PageLayout;
-
-const Layout = styled.div`
-  height: 100vh;
-`;
 
 const Main = styled.main`
   max-width: 1200px;
