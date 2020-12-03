@@ -78,7 +78,7 @@ const GreyOverlay = styled.div<{ left?: boolean; right?: boolean }>`
   background: linear-gradient(
     to ${({ left }) => (left ? "right" : "left")},
     ${colors.neutral},
-    rgba(0, 0, 0, 0)
+    rgba(224, 224, 224, 0)
   );
   z-index: 1;
 `;
