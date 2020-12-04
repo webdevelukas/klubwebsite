@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { colors } from "styles/colors";
 import Lightbox from "./Lightbox";
 import FilestackImage from "elements/FilestackImage";
 import useMediaQuery from "hooks/useMediaQuery";
+import useScrollPosition from "hooks/useScrollPosition";
 
 type GalleryProps = {
   images: [{ url: string; alt: string }];
@@ -12,6 +13,22 @@ type GalleryProps = {
 function Gallery({ images }: GalleryProps) {
   const [showLightbox, setShowLightbox] = useState(false);
   const [fitsMediaQuery] = useMediaQuery("(min-width: 1100px");
+  const { scrollPosition } = useScrollPosition();
+
+  useEffect(() => {
+    const body = document.body;
+
+    if (typeof window !== "undefined" && showLightbox) {
+      body.style.position = "fixed";
+      body.style.top = `-${scrollPosition}px`;
+    }
+    if (typeof window !== "undefined" && !showLightbox) {
+      const scrollY = body.style.top;
+      body.style.position = "";
+      body.style.top = "";
+      window.scrollTo(0, parseInt(scrollY || "0") * -1);
+    }
+  }, [showLightbox]);
 
   const galleryImages = fitsMediaQuery ? images : images.slice(0, 4);
 

@@ -17,7 +17,7 @@ export type Post = {
     name: string;
     position: string;
   };
-  images: [{ url: string; alt: string }];
+  images: [{ url: string; alt: string; width: number; height: number }];
 };
 
 export type Posts = [Post];

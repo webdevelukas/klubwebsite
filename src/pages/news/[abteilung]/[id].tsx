@@ -79,6 +79,8 @@ export async function getStaticProps({ params }: getStaticProps) {
       images {
         url
         alt
+        width
+        height
       }
       author {
         name
@@ -174,7 +176,7 @@ const Author = styled.p`
 const HorizontalLine = styled.div`
   margin: 2rem auto;
   border-bottom: 1px solid ${colors.main.default};
-  width: 80%;
+  width: 90%;
 `;
 const AuthorContainer = styled.div`
   display: flex;

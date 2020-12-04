@@ -1,12 +1,15 @@
 import styled from "styled-components";
-import FilestackImage from "elements/FilestackImage";
+import NextImage from "next/image";
+import useMediaQuery from "hooks/useMediaQuery";
 
 type LightboxProps = {
   setShowLightbox: (showLightbox: boolean) => void;
-  images: [{ url: string; alt: string }];
+  images: [{ url: string; alt: string; width: number; height: number }];
 };
 
 function Lightbox({ setShowLightbox, images }: LightboxProps) {
+  const [fitsMediaQuery] = useMediaQuery("(min-width: 900px)");
+
   return (
     <Container>
       <Wrapper>
@@ -16,7 +19,22 @@ function Lightbox({ setShowLightbox, images }: LightboxProps) {
       <ImageGallery>
         {images.map((image, index) => (
           <LightboxPicture key={index}>
-            <Image src={image.url} alt={image.alt} />
+            {!fitsMediaQuery && (
+              <NextImage
+                src={image.url}
+                alt={image.alt}
+                layout="fill"
+                objectFit="cover"
+              />
+            )}
+            {fitsMediaQuery && (
+              <NextImage
+                src={image.url}
+                alt={image.alt}
+                layout="fill"
+                objectFit="contain"
+              />
+            )}
           </LightboxPicture>
         ))}
       </ImageGallery>
@@ -29,9 +47,7 @@ export default Lightbox;
 const ImageCount = styled.p`
   color: white;
 `;
-const Image = styled(FilestackImage)`
-  position: absolute;
-`;
+
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr auto;
@@ -39,22 +55,23 @@ const Wrapper = styled.div`
 `;
 const ImageGallery = styled.div`
   display: grid;
-  grid-auto-rows: 1fr;
+  grid-auto-rows: auto;
   grid-auto-flow: row;
-  grid-row-gap: 2rem;
+  grid-row-gap: 1rem;
+  align-content: start;
 `;
 const LightboxPicture = styled.picture`
   position: relative;
-  width: 100%;
-  height: auto;
-  padding-bottom: 75%;
+  height: 60vmin;
+
+  @media screen and (min-width: 900px) {
+    height: 80vh;
+  }
 `;
 const Container = styled.div`
   background: rgba(0, 0, 0, 0.9);
-  z-index: 1000;
-  width: 100%;
-  height: 100%;
-  position: absolute;
+  z-index: 4000;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
