@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../styles/colors";
+import { colors } from "styles/colors";
 import renderDate from "services/renderDate";
 import NextLink from "next/link";
 import { Posts } from "types/posts";
@@ -60,6 +60,7 @@ const Article = styled.article`
   display: grid;
   grid-template-rows: minmax(18rem, 1fr) auto;
   grid-area: blogpost;
+  box-shadow: 0 0.25rem 0 ${colors.main.shadow};
 `;
 
 const Picture = styled.picture`
@@ -74,6 +75,10 @@ const TextContainer = styled.div`
   background: ${colors.main.default};
   color: white;
   padding: 0.75rem;
+
+  @media screen and (min-width: 1100px) {
+    padding: 1.5rem;
+  }
 `;
 
 const CategoryText = styled.p`
@@ -84,7 +89,6 @@ const CategoryText = styled.p`
 
 const Headline = styled.h1`
   font-size: 1.25rem;
-  text-transform: uppercase;
   line-height: 1.5rem;
   display: -webkit-box;
   -webkit-box-orient: vertical;

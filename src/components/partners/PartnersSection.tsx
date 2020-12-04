@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import PartnerComponent from "../PartnerComponent";
+import PartnerComponent from "./PartnerComponent";
 import { Partners } from "types/partners";
 import { colors } from "styles/colors";
 
@@ -41,5 +41,5 @@ const Headline = styled.h2`
 `;
 
 const Wrapper = styled.div`
-  margin-top: 6rem;
+  margin-top: 8rem;
 `;

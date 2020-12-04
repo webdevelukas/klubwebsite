@@ -1,10 +1,12 @@
-import BlogPost from "components/BlogPost";
-import EventBoxes from "components/Events/EventBoxes";
-import NewsContainer from "components/NewsContainer";
-import { Posts } from "types/posts";
-import { Events } from "types/events";
+import BlogPost from "components/news/BlogPost";
+import NewsContainer from "components/news/NewsContainer";
+import type { Posts, Events } from "types";
 import graphCMS from "services/graphCMS";
 import styled from "styled-components";
+import NewsletterContainer from "components/NewsletterContainer";
+import BlogPosts from "components/news/BlogPosts";
+import EventBoxes from "components/events/EventBoxes";
+import NextImage from "next/image";
 
 type HomePageProps = {
   posts: Posts;
@@ -17,7 +19,16 @@ function HomePage({ posts, events }: HomePageProps) {
       <BlogPost posts={posts} />
       <EventBoxes events={events} />
       <NewsContainer posts={posts} />
-      <AdContainer>AdContainer</AdContainer>
+      <AdContainer>
+        <NextImage
+          src="/deinklub-ad2.png"
+          width="376"
+          height="152"
+          quality={100}
+        />
+      </AdContainer>
+      <NewsletterContainer />
+      <BlogPosts posts={posts} />
     </PageLayout>
   );
 }
@@ -57,24 +68,27 @@ const PageLayout = styled.div`
     "blogpost"
     "eventboxes"
     "newscontainer"
-    "adcontainer";
+    "adcontainer"
+    "newslettercontainer"
+    "blogposts";
   grid-gap: 2rem;
 
   @media screen and (min-width: 1100px) {
-    margin-top: 2rem;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto 1fr auto auto auto;
     grid-template-areas:
+      "blogpost blogpost adcontainer"
       "blogpost blogpost newscontainer"
-      "blogpost blogpost newscontainer"
-      "eventboxes eventboxes adcontainer";
+      "eventboxes eventboxes newscontainer"
+      "newslettercontainer newslettercontainer newslettercontainer"
+      "blogposts blogposts blogposts";
   }
 `;
 
 const AdContainer = styled.aside`
   background: rgb(7, 31, 18);
   grid-area: adcontainer;
-  height: 150px;
+  height: 152px;
   display: flex;
   align-items: center;
   justify-content: center;

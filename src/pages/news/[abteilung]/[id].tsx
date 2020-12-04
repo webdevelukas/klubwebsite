@@ -143,7 +143,7 @@ const Author = styled.p`
 const HorizontalLine = styled.div`
   margin: 2rem auto;
   border-bottom: 1px solid ${colors.main.default};
-  width: 70vw;
+  width: 80%;
 `;
 const AuthorContainer = styled.div`
   display: flex;
