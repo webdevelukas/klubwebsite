@@ -7,7 +7,7 @@ import useMediaQuery from "hooks/useMediaQuery";
 import useScrollPosition from "hooks/useScrollPosition";
 
 type GalleryProps = {
-  images: [{ url: string; alt: string }];
+  images: [{ url: string; alt: string; width: number; height: number }];
 };
 
 function Gallery({ images }: GalleryProps) {
