@@ -4,7 +4,7 @@ import Gallery from "components/images/Gallery";
 import renderDate from "services/renderDate";
 import { Post } from "types/posts";
 import graphCMS from "services/graphCMS";
-import NextImage, { ImageProps } from "next/image";
+import NextImage from "next/image";
 
 type NewsPageProps = {
   post: Post;
