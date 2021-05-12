@@ -42,7 +42,12 @@ function Gallery({ images }: GalleryProps) {
                 <OverlayText>+ {images.length - 3}</OverlayText>
               </ImageOverlay>
             )}
-            <NextImage src={image.url} alt={image.alt} layout="fill" />
+            <NextImage
+              src={image.url}
+              alt={image.alt}
+              layout="fill"
+              objectFit="cover"
+            />
           </Picture>
         ))}
       </GallerySection>
