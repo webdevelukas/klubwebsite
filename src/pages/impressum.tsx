@@ -25,6 +25,3 @@ const Headline = styled.h1`
 const TextContainer = styled.div`
   padding: 1rem 2rem 0;
 `;
-const Content = styled.div`
-  margin-bottom: 1rem;
-`;
