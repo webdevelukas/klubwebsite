@@ -75,7 +75,7 @@ const Wrapper = styled.div`
   align-items: center;
 
   button {
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     font-size: 0.75rem;
   }
 

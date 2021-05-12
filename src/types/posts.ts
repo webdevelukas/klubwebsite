@@ -2,6 +2,7 @@ import { Event } from "./events";
 import { Groups } from "./groups";
 
 export type Post = {
+  slug: string;
   title: string;
   titleimage: {
     url: string;
@@ -17,7 +18,7 @@ export type Post = {
     name: string;
     position: string;
   };
-  images: [{ url: string; alt: string }];
+  images: [{ url: string; alt: string; width: number; height: number }];
 };
 
 export type Posts = [Post];

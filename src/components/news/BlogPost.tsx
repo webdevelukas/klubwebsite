@@ -12,7 +12,7 @@ type BlogPostProps = {
 
 function BlogPost({ posts }: BlogPostProps) {
   const newestPost = posts[0];
-  const { title, titleimage, event, department, groups, id } = newestPost;
+  const { title, titleimage, event, department, groups, slug } = newestPost;
   return (
     <Article>
       <Picture>
@@ -25,11 +25,7 @@ function BlogPost({ posts }: BlogPostProps) {
           priority
         />
       </Picture>
-      <NextLink
-        href="/news/[abteilung]/[title][id]"
-        as={`/news/fussball/${id}`}
-        passHref
-      >
+      <NextLink href={`/news/${department.uid}/${slug}`} passHref>
         <a>
           <TextContainer>
             <CategoryText>Top story</CategoryText>

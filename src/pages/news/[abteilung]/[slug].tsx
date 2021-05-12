@@ -5,6 +5,7 @@ import FilestackImage from "elements/FilestackImage";
 import renderDate from "services/renderDate";
 import { Post } from "types/posts";
 import graphCMS from "services/graphCMS";
+import NextImage from "next/image";
 
 type NewsPageProps = {
   post: Post;
@@ -14,13 +15,18 @@ function NewsPage({ post }: NewsPageProps) {
   const { title, titleimage, content, event, author, images } = post;
 
   return (
-    <>
-      <Container>
-        <Picture>
-          <Image src={titleimage.url} alt={titleimage.alt} />
-        </Picture>
+    <Container>
+      <Picture>
+        <NextImage
+          src={titleimage.url}
+          alt={titleimage.alt}
+          layout="fill"
+          objectFit="cover"
+        />
+      </Picture>
+      <ContentContainer>
+        <Date>{renderDate(event.dateandtime)}</Date>
         <TextContainer>
-          <Date>{renderDate(event.dateandtime)}</Date>
           <Headline>{title}</Headline>
           <Content
             dangerouslySetInnerHTML={{
@@ -44,39 +50,21 @@ function NewsPage({ post }: NewsPageProps) {
             </AuthorContainer>
           </>
         )}
-      </Container>
-    </>
+      </ContentContainer>
+    </Container>
   );
 }
 
-export async function getStaticPaths() {
-  const { posts } = await graphCMS(`{
-    posts {
-      id
-      department {
-        uid
-      }
-    }
-  }
-  `);
-
-  const paths = posts.map((post: Post) => ({
-    params: { abteilung: post.department.uid, id: post.id },
-  }));
-
-  return { paths, fallback: false };
-}
-
 type getStaticProps = {
-  params: { id: string };
+  params: { slug: string };
 };
 
 export async function getStaticProps({ params }: getStaticProps) {
-  const { id } = params;
+  const { slug } = params;
 
   const post = await graphCMS(
-    `query postContent($id: ID){
-    post(where: { id: $id }) {
+    `query postContent($slug: String){
+    post(where: { slug: $slug }) {
       title
       titleimage {
         url
@@ -91,6 +79,8 @@ export async function getStaticProps({ params }: getStaticProps) {
       images {
         url
         alt
+        width
+        height
       }
       author {
         name
@@ -99,9 +89,27 @@ export async function getStaticProps({ params }: getStaticProps) {
       }
     }
   }`,
-    { id: id }
+    { slug: slug }
   );
   return { props: post };
+}
+
+export async function getStaticPaths() {
+  const { posts } = await graphCMS(`{
+    posts {
+      slug
+      department {
+        uid
+      }
+    }
+  }
+  `);
+
+  const paths = posts.map((post: Post) => ({
+    params: { abteilung: post.department.uid, slug: post.slug },
+  }));
+
+  return { paths, fallback: false };
 }
 
 export default NewsPage;
@@ -109,33 +117,58 @@ const Container = styled.div`
   background: white;
   padding-bottom: 4rem;
   border-bottom: 0.25rem solid ${colors.main.default};
+  max-width: 900px;
+  margin: 0 auto;
 `;
-const TextContainer = styled.div`
-  padding: 1rem 2rem 0;
+const ContentContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(auto-fill, auto);
+  grid-gap: 2rem;
+  padding: 1rem 1rem 0;
+
+  @media screen and (min-width: 1100px) {
+    padding: 1rem 2rem 0;
+  }
 `;
+
+const TextContainer = styled.div``;
 const Date = styled.p`
   text-align: right;
+  @media screen and (min-width: 1100px) {
+    font-size: 1.25rem;
+  }
 `;
 const Headline = styled.h1`
   color: ${colors.main.default};
-  margin: 1.5rem 0 1rem;
+  margin: 0 0 1rem;
   line-height: 2.25rem;
-  text-transform: capitalize;
+
+  @media screen and (min-width: 1100px) {
+    font-size: 2.5rem;
+    line-height: 2.75rem;
+  }
 `;
 const Content = styled.div`
-  margin-bottom: 1rem;
   p {
     margin-bottom: 1rem;
+
+    :last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  @media screen and (min-width: 1100px) {
+    font-size: 1.25rem;
   }
 `;
 const Picture = styled.picture`
-  display: flex;
-`;
-const Image = styled(FilestackImage)`
-  height: 18rem;
+  position: relative;
+  display: block;
   width: 100%;
-  object-fit: cover;
+  height: 60vmin;
 `;
+
 const Author = styled.p`
   text-transform: uppercase;
   font-weight: bold;
@@ -143,12 +176,16 @@ const Author = styled.p`
 const HorizontalLine = styled.div`
   margin: 2rem auto;
   border-bottom: 1px solid ${colors.main.default};
-  width: 80%;
+  width: 90%;
 `;
 const AuthorContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media screen and (min-width: 1100px) {
+    font-size: 1.25rem;
+  }
 `;
 const AuthorImage = styled(FilestackImage)`
   width: 5rem;
