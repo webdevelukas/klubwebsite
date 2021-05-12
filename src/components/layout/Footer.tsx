@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import BecomeAMember from "../BecomeAMember";
+import BecomeMember from "../BecomeMember";
 import { colors } from "styles/colors";
 import LinkList from "../LinkList";
 import NextLink from "next/link";
@@ -7,7 +7,7 @@ import NextLink from "next/link";
 function Footer() {
   return (
     <Container>
-      <BecomeAMember />
+      <BecomeMember />
       <FooterContainer>
         <LinkList />
         <Small>

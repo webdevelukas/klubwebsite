@@ -2,7 +2,7 @@ import styled from "styled-components";
 import NextLink from "next/link";
 import { colors } from "styles/colors";
 import { useState } from "react";
-import BecomeAMember from "components/BecomeAMember";
+import BecomeMember from "components/BecomeMember";
 
 type DesktopHeaderProps = {
   headerIsVisible: boolean;
@@ -51,7 +51,7 @@ export function DesktopHeader({ headerIsVisible }: DesktopHeaderProps) {
           <p>
             Mitglieder Login <img src="/member-login.png" />
           </p>
-          <BecomeAMember />
+          <BecomeMember />
         </Wrapper>
       </GridContainer>
     </Header>
