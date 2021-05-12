@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { colors } from "styles/colors";
 import Lightbox from "./Lightbox";
-import FilestackImage from "elements/FilestackImage";
 import useMediaQuery from "hooks/useMediaQuery";
 import useScrollPosition from "hooks/useScrollPosition";
+import NextImage from "next/image";
 
 type GalleryProps = {
   images: [{ url: string; alt: string; width: number; height: number }];
@@ -42,7 +42,7 @@ function Gallery({ images }: GalleryProps) {
                 <OverlayText>+ {images.length - 3}</OverlayText>
               </ImageOverlay>
             )}
-            <Image src={image.url} alt={image.alt} />
+            <NextImage src={image.url} alt={image.alt} layout="fill" />
           </Picture>
         ))}
       </GallerySection>
@@ -61,9 +61,6 @@ const GallerySection = styled.section`
   @media screen and (min-width: 1100px) {
     grid-template-columns: repeat(auto-fill, minmax(25vmin, 1fr));
   }
-`;
-const Image = styled(FilestackImage)`
-  position: absolute;
 `;
 const ImageOverlay = styled.div`
   z-index: 100;
