@@ -1,11 +1,10 @@
 import styled from "styled-components";
 import { colors } from "styles/colors";
 import Gallery from "components/images/Gallery";
-import FilestackImage from "elements/FilestackImage";
 import renderDate from "services/renderDate";
 import { Post } from "types/posts";
 import graphCMS from "services/graphCMS";
-import NextImage from "next/image";
+import NextImage, { ImageProps } from "next/image";
 
 type NewsPageProps = {
   post: Post;
@@ -44,7 +43,13 @@ function NewsPage({ post }: NewsPageProps) {
           <>
             <HorizontalLine />
             <AuthorContainer>
-              <AuthorImage src={author.image.url} />
+              <AuthorImage>
+                <NextImage
+                  src={author.image.url}
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </AuthorImage>
               <Author>{author.name}</Author>
               <AuthorRole>{author.position}</AuthorRole>
             </AuthorContainer>
@@ -187,11 +192,16 @@ const AuthorContainer = styled.div`
     font-size: 1.25rem;
   }
 `;
-const AuthorImage = styled(FilestackImage)`
+const AuthorImage = styled.picture`
+  position: relative;
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
   margin-bottom: 0.5rem;
+
+  > div:first-child {
+    border-radius: 50%;
+  }
 `;
 const AuthorRole = styled.p`
   line-height: 0.8rem;
