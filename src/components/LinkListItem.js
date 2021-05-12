@@ -1,8 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import NextLink from "next/link";
-LinkListItem.propTypes = {};
+
 function LinkListItem({ listItem }) {
   return (
     <>
@@ -16,4 +15,5 @@ function LinkListItem({ listItem }) {
   );
 }
 export default LinkListItem;
+
 const ListItem = styled.li``;

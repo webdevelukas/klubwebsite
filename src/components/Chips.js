@@ -1,7 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Chip from "./Chip";
 import styled from "styled-components";
+
 function Chips({ groups }) {
   return (
     <Container>

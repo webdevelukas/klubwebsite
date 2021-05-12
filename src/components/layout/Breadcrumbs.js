@@ -1,9 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import { colors } from "styles/colors";
 import NextLink from "next/link";
-Breadcrumbs.propTypes = {};
 function Breadcrumbs({ breadcrumbs, route }) {
   return (
     <Container>
