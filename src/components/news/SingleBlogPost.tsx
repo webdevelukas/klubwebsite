@@ -12,7 +12,7 @@ type SingleBlogPostProps = {
 
 function SingleBlogPost({ index, post }: SingleBlogPostProps) {
   const firstPost = index === 0;
-  const { title, titleimage, event, id, groups } = post;
+  const { title, titleimage, event, slug, groups, department } = post;
 
   return (
     <Article>
@@ -26,11 +26,7 @@ function SingleBlogPost({ index, post }: SingleBlogPostProps) {
         />
       </Picture>
       <InfoContainer>
-        <NextLink
-          href="/news/[abteilung]/[title][id]"
-          as={`/news/fussball/${id}`}
-          passHref
-        >
+        <NextLink href={`/news/${department.uid}/${slug}`} passHref>
           <a>
             <Headline>{title}</Headline>
           </a>

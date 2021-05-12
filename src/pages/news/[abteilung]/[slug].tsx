@@ -56,15 +56,15 @@ function NewsPage({ post }: NewsPageProps) {
 }
 
 type getStaticProps = {
-  params: { id: string };
+  params: { slug: string };
 };
 
 export async function getStaticProps({ params }: getStaticProps) {
-  const { id } = params;
+  const { slug } = params;
 
   const post = await graphCMS(
-    `query postContent($id: ID){
-    post(where: { id: $id }) {
+    `query postContent($slug: String){
+    post(where: { slug: $slug }) {
       title
       titleimage {
         url
@@ -89,7 +89,7 @@ export async function getStaticProps({ params }: getStaticProps) {
       }
     }
   }`,
-    { id: id }
+    { slug: slug }
   );
   return { props: post };
 }
@@ -97,7 +97,7 @@ export async function getStaticProps({ params }: getStaticProps) {
 export async function getStaticPaths() {
   const { posts } = await graphCMS(`{
     posts {
-      id
+      slug
       department {
         uid
       }
@@ -106,7 +106,7 @@ export async function getStaticPaths() {
   `);
 
   const paths = posts.map((post: Post) => ({
-    params: { abteilung: post.department.uid, id: post.id },
+    params: { abteilung: post.department.uid, slug: post.slug },
   }));
 
   return { paths, fallback: false };

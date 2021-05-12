@@ -10,7 +10,7 @@ type BlogPostSmallProps = {
 };
 
 function BlogPostSmall({ post }: BlogPostSmallProps) {
-  const { title, titleimage, event, department, groups, id } = post;
+  const { title, titleimage, event, department, groups, slug } = post;
   return (
     <Article>
       <Picture>
@@ -23,11 +23,7 @@ function BlogPostSmall({ post }: BlogPostSmallProps) {
           priority
         />
       </Picture>
-      <NextLink
-        href="/news/[abteilung]/[title][id]"
-        as={`/news/fussball/${id}`}
-        passHref
-      >
+      <NextLink href={`/news/${department.uid}/${slug}`} passHref>
         <a>
           <TextContainer>
             <Headline>{title}</Headline>

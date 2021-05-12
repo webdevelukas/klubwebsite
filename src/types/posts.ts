@@ -2,6 +2,7 @@ import { Event } from "./events";
 import { Groups } from "./groups";
 
 export type Post = {
+  slug: string;
   title: string;
   titleimage: {
     url: string;

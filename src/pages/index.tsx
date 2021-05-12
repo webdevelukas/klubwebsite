@@ -36,7 +36,7 @@ function HomePage({ posts, events }: HomePageProps) {
 export async function getStaticProps() {
   const data = await graphCMS(`{
     posts(orderBy: createdAt_DESC) {
-      id
+      slug
       title
       titleimage {
         url
@@ -45,7 +45,10 @@ export async function getStaticProps() {
       event {
         dateandtime
       }
-      department {name}
+      department {
+        name
+        uid
+      }
       groups {name}
     }
     events(orderBy: dateandtime_ASC) {
