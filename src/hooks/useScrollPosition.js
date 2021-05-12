@@ -6,10 +6,8 @@ export default function useScrollPosition() {
     isBrowser ? window.scrollY : 0
   );
   const [headerIsVisible, setHeaderIsVisible] = useState(true);
-  const [
-    scrollPositionIsNearTopOfPage,
-    setScrollPositionIsNearTopOfPage,
-  ] = useState(false);
+  const [scrollPositionIsNearTopOfPage, setScrollPositionIsNearTopOfPage] =
+    useState(false);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
