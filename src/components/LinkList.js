@@ -17,9 +17,9 @@ const linkList = [
       { name: "Aktuelle Termine", url: "/verein/events" },
       { name: "Vorstandschaft", url: "/verein/vorstand" },
       { name: "Kontakt", url: "/verein/kontakt" },
-      { name: "Anfahrt", url: "anfahrt" },
-      { name: "Satzung", url: "satzung" },
-      { name: "Vereinszeitung", url: "vereinszeitung" },
+      { name: "Anfahrt", url: "/verein/anfahrt" },
+      { name: "Satzung", url: "/verein/satzung" },
+      { name: "Vereinszeitung", url: "/verein/vereinszeitung" },
     ],
   },
 ];

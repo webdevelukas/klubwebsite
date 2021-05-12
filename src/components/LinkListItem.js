@@ -6,7 +6,7 @@ function LinkListItem({ listItem }) {
   return (
     <>
       {listItem.url && (
-        <NextLink href={listItem.url}>
+        <NextLink href={listItem.url} passHref>
           <ListItem>{listItem.name}</ListItem>
         </NextLink>
       )}
@@ -16,4 +16,6 @@ function LinkListItem({ listItem }) {
 }
 export default LinkListItem;
 
-const ListItem = styled.li``;
+const ListItem = styled.li`
+  cursor: pointer;
+`;

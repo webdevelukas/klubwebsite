@@ -9,7 +9,7 @@ function Footer() {
     <Container>
       <BecomeAMember />
       <FooterContainer>
-        {/* <LinkList /> */}
+        <LinkList />
         <Small>
           <NextLink href="/impressum">
             <a>Impressum</a>
