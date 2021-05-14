@@ -27,6 +27,10 @@ function AnfahrtsPage() {
 
 export default AnfahrtsPage;
 
+export async function getStaticProps() {
+  return { props: {} };
+}
+
 const Container = styled.div`
   background: white;
   padding: 2rem 1rem 4rem;

@@ -13,6 +13,10 @@ function Datenschutz() {
 }
 export default Datenschutz;
 
+export async function getStaticProps() {
+  return { props: {} };
+}
+
 const Container = styled.div`
   background: white;
   padding: 2rem 0 4rem;
