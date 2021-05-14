@@ -6,9 +6,11 @@ function LinkListItem({ listItem }) {
   return (
     <>
       {listItem.url && (
-        <NextLink href={listItem.url} passHref>
-          <ListItem>{listItem.name}</ListItem>
-        </NextLink>
+        <ListItem>
+          <NextLink href={listItem.url}>
+            <a>{listItem.name}</a>
+          </NextLink>
+        </ListItem>
       )}
       {!listItem.url && <ListItem>{listItem.name}</ListItem>}
     </>

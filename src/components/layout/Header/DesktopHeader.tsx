@@ -19,7 +19,11 @@ export function DesktopHeader({ headerIsVisible }: DesktopHeaderProps) {
             <Logo src="/tsv-paunzhausen.png" alt="club logo" />
           </a>
         </NextLink>
-        <H2>TSV Paunzhausen</H2>
+        <NextLink href="/" passHref>
+          <a>
+            <H2>TSV Paunzhausen</H2>
+          </a>
+        </NextLink>
         <Nav onMouseLeave={() => setShowSubmenu(false)}>
           <List>
             <li onMouseEnter={() => setShowSubmenu(true)}>

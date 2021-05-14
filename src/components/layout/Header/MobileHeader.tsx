@@ -20,7 +20,11 @@ export function MobileHeader({
           <Logo src="/tsv-paunzhausen.png" alt="club logo" />
         </a>
       </NextLink>
-      <H2>TSV Paunzhausen</H2>
+      <NextLink href="/" passHref>
+        <a>
+          <H2>TSV Paunzhausen</H2>
+        </a>
+      </NextLink>
       <MenuButton open={open} onClick={() => setOpen(!open)}>
         <div />
         <div />
