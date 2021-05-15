@@ -47,7 +47,11 @@ export function DesktopHeader({ headerIsVisible }: DesktopHeaderProps) {
             <li>Abteilungen</li>
             <li>Termine</li>
             <li>Shop</li>
-            <li>Jobs</li>
+            <li>
+              <NextLink href="/jobs">
+                <a>Jobs</a>
+              </NextLink>
+            </li>
             <li>Partner</li>
           </List>
         </Nav>
