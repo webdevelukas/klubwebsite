@@ -12,7 +12,7 @@ type GalleryProps = {
 
 function Gallery({ images }: GalleryProps) {
   const [showLightbox, setShowLightbox] = useState(false);
-  const [fitsMediaQuery] = useMediaQuery("(min-width: 1100px");
+  const [fitsMediaQuery] = useMediaQuery("(min-width: 1100px)");
   const { scrollPosition } = useScrollPosition();
 
   useEffect(() => {
