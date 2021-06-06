@@ -36,6 +36,7 @@ function PageLayout({ children, partners }: PageLayoutProps) {
 export default PageLayout;
 
 const Main = styled.main`
-  max-width: var(--max-content-width);
+  max-width: calc(var(--max-content-width) + 2rem);
   margin: 0 auto;
+  padding: 0 1rem;
 `;
