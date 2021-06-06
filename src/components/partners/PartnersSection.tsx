@@ -27,7 +27,7 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
   grid-gap: 2rem;
-  max-width: 1200px;
+  max-width: var(--max-content-width);
   margin: 0 auto;
 `;
 

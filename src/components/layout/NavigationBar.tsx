@@ -10,7 +10,7 @@ type NavigationBarProps = {
 
 function NavigationBar({ open, setOpen }: NavigationBarProps) {
   const { headerIsVisible } = useScrollPosition();
-  const [matchesMediaQuery] = useMediaQuery(`(min-width: 1100px)`);
+  const [matchesMediaQuery] = useMediaQuery(`(min-width: 1025px)`);
 
   return (
     <Wrapper>
