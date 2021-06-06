@@ -42,7 +42,25 @@ const mainNavItems = [
       },
     ],
   },
-  { url: "/", title: "Termine" },
+  {
+    url: "/",
+    title: "Termine",
+    submenuItems: [
+      {
+        url: "/",
+        title: "Fußball",
+        links: [
+          { url: "/", title: "1. Mannschaft" },
+          { url: "/", title: "2. Mannschaft" },
+          { url: "/", title: "U15-Junioren" },
+          { url: "/", title: "U13-Junioren" },
+          { url: "/", title: "U11-Junioren" },
+          { url: "/", title: "U9-Junioren" },
+          { url: "/", title: "U9-Junioren II" },
+        ],
+      },
+    ],
+  },
   { url: "/", title: "Shop" },
   { url: "/", title: "Jobs" },
   { url: "/", title: "Partner" },
