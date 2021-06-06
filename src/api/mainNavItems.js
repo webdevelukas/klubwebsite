@@ -61,8 +61,6 @@ const mainNavItems = [
       },
     ],
   },
-  { url: "/", title: "Shop" },
-  { url: "/", title: "Jobs" },
   { url: "/", title: "Partner" },
 ];
 
