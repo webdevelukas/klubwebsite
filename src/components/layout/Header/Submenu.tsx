@@ -1,38 +1,33 @@
 import styled from "styled-components";
+import NextLink from "next/link";
 
 type SubmenuProps = {
-  showSubmenu: boolean;
+  submenuItems: {
+    url: string;
+    title: string;
+    links?: { url: string; title: string }[];
+  }[];
   onMouseLeave: () => void;
 };
 
-function Submenu({ showSubmenu }: SubmenuProps) {
+function Submenu({ submenuItems }: SubmenuProps) {
   return (
-    <Container showSubmenu={showSubmenu}>
+    <Container>
       <GridContainer>
-        <Wrapper>
-          <MainLink>Fußball</MainLink>
-          <SubLink>1. Mannschaft</SubLink>
-          <SubLink>2. Mannschaft</SubLink>
-          <SubLink>U15-Junioren</SubLink>
-          <SubLink>U13-Junioren</SubLink>
-          <SubLink>U11-Junioren</SubLink>
-          <SubLink>U11-Junioren II</SubLink>
-          <SubLink>U9-Junioren</SubLink>
-          <SubLink>U7-Junioren</SubLink>
-          <SubLink>Alte Herren</SubLink>
-        </Wrapper>
-        <Wrapper>
-          <MainLink>Tennis</MainLink>
-          <SubLink>1. Mannschaft</SubLink>
-          <SubLink>2. Mannschaft</SubLink>
-          <SubLink>U15-Junioren</SubLink>
-          <SubLink>U13-Junioren</SubLink>
-        </Wrapper>
-        <Wrapper>
-          <MainLink>Theatergruppe</MainLink>
-          <SubLink>Aktuell</SubLink>
-          <SubLink>Chronik</SubLink>
-        </Wrapper>
+        {submenuItems.map(({ url, title, links }, index) => (
+          <Wrapper key={index}>
+            <NextLink href={url}>
+              <>
+                <MainLink>{title}</MainLink>
+                {links?.map((link, index) => (
+                  <NextLink key={index} href={link.url}>
+                    <SubLink>{link.title}</SubLink>
+                  </NextLink>
+                ))}
+              </>
+            </NextLink>
+          </Wrapper>
+        ))}
       </GridContainer>
     </Container>
   );
@@ -40,9 +35,9 @@ function Submenu({ showSubmenu }: SubmenuProps) {
 
 export default Submenu;
 
-const Container = styled.div<{ showSubmenu: boolean }>`
+const Container = styled.div`
   position: absolute;
-  max-height: ${({ showSubmenu }) => (showSubmenu ? "auto" : 0)};
+  max-height: "auto";
   bottom: 0;
   left: 0;
   background: white;

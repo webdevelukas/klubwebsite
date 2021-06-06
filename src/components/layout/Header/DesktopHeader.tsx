@@ -3,13 +3,25 @@ import NextLink from "next/link";
 import { useState } from "react";
 import BecomeMember from "components/BecomeMember";
 import Submenu from "./Submenu";
+import mainNavItems from "../../../api/mainNavItems";
 
 type DesktopHeaderProps = {
   headerIsVisible: boolean;
 };
 
+type showSubmenuProps = {
+  active: boolean;
+  submenuItems?: {
+    url: string;
+    title: string;
+    links?: { url: string; title: string }[];
+  }[];
+};
+
 export function DesktopHeader({ headerIsVisible }: DesktopHeaderProps) {
-  const [showSubmenu, setShowSubmenu] = useState(false);
+  const [showSubmenu, setShowSubmenu] = useState<showSubmenuProps>({
+    active: false,
+  });
 
   return (
     <Header headerIsVisible={headerIsVisible}>
@@ -24,17 +36,26 @@ export function DesktopHeader({ headerIsVisible }: DesktopHeaderProps) {
             <H2>TSV Paunzhausen</H2>
           </a>
         </NextLink>
-        <Nav onMouseLeave={() => setShowSubmenu(false)}>
-          <a onMouseEnter={() => setShowSubmenu(true)}>Klub</a>
-          <a>Abteilungen</a>
-          <a>Termine</a>
-          <a>Shop</a>
-          <a>Jobs</a>
-          <a>Partner</a>
-          {showSubmenu && (
+        <Nav onMouseLeave={() => setShowSubmenu({ active: false })}>
+          {mainNavItems.map(({ url, title, submenuItems }, index) => (
+            <NextLink key={index} href={url}>
+              <a
+                onMouseEnter={() =>
+                  setShowSubmenu({
+                    active: true,
+                    submenuItems: submenuItems,
+                  })
+                }
+              >
+                {title}
+              </a>
+            </NextLink>
+          ))}
+          {/* Is the non-null assertion operator "!" correct in this case? */}
+          {showSubmenu.active && showSubmenu.submenuItems!?.length > 0 && (
             <Submenu
-              showSubmenu={showSubmenu}
-              onMouseLeave={() => setShowSubmenu(false)}
+              submenuItems={showSubmenu.submenuItems!}
+              onMouseLeave={() => setShowSubmenu({ active: false })}
             />
           )}
         </Nav>
