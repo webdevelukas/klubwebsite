@@ -32,9 +32,7 @@ export function DesktopHeader({ headerIsVisible }: DesktopHeaderProps) {
           </a>
         </NextLink>
         <NextLink href="/" passHref>
-          <a>
-            <H2>TSV Paunzhausen</H2>
-          </a>
+          <ClubName>TSV Paunzhausen</ClubName>
         </NextLink>
         <Nav onMouseLeave={() => setShowSubmenu({ active: false })}>
           {mainNavItems.map(({ url, title, submenuItems }, index) => (
@@ -125,7 +123,7 @@ const Header = styled.header<{ headerIsVisible: boolean }>`
   position: fixed;
   width: 100%;
   height: 6.5rem;
-  padding: 0 0.75rem;
+  padding: 0 1rem;
   z-index: 2000;
   transition: all 150ms ease-in-out;
   background: rgb(var(--main-color));
@@ -144,9 +142,10 @@ const Logo = styled.img`
   height: 5rem;
 `;
 
-const H2 = styled.h2`
+const ClubName = styled.a`
   margin: 0;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   color: white;
   text-transform: uppercase;
+  font-weight: bold;
 `;
