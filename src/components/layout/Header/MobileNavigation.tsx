@@ -42,11 +42,13 @@ function Navigation({ open }: NavigationProps) {
               <Title>{title}</Title>
             </NextLink>
             <SubmenuItems>
-              {submenuItems?.map((item, index) => (
-                <NextLink key={index} href={item.url} passHref>
-                  <SubmenuItem>{item.title}</SubmenuItem>
-                </NextLink>
-              ))}
+              {submenuItems?.map(
+                (item: { url: string; title: string }, index: number) => (
+                  <NextLink key={index} href={item.url} passHref>
+                    <SubmenuItem>{item.title}</SubmenuItem>
+                  </NextLink>
+                )
+              )}
             </SubmenuItems>
           </Category>
         ))}
