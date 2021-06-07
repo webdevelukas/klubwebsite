@@ -11,16 +11,17 @@ type DesktopHeaderProps = {
 
 type showSubmenuProps = {
   active: boolean;
-  submenuItems?: {
+  submenuItems: {
     url: string;
     title: string;
-    links?: { url: string; title: string }[];
+    links?: { url: string; title: string }[] | undefined;
   }[];
 };
 
 export function DesktopHeader({ headerIsVisible }: DesktopHeaderProps) {
   const [showSubmenu, setShowSubmenu] = useState<showSubmenuProps>({
     active: false,
+    submenuItems: [],
   });
 
   return (
@@ -34,7 +35,11 @@ export function DesktopHeader({ headerIsVisible }: DesktopHeaderProps) {
         <NextLink href="/" passHref>
           <ClubName>TSV Paunzhausen</ClubName>
         </NextLink>
-        <Nav onMouseLeave={() => setShowSubmenu({ active: false })}>
+        <Nav
+          onMouseLeave={() =>
+            setShowSubmenu({ active: false, submenuItems: [] })
+          }
+        >
           {mainNavItems.map(({ url, title, submenuItems }, index) => (
             <NextLink key={index} href={url}>
               <a
@@ -49,11 +54,12 @@ export function DesktopHeader({ headerIsVisible }: DesktopHeaderProps) {
               </a>
             </NextLink>
           ))}
-          {/* Is the non-null assertion operator "!" correct in this case? */}
-          {showSubmenu.active && showSubmenu.submenuItems!?.length > 0 && (
+          {showSubmenu.active && showSubmenu.submenuItems?.length > 0 && (
             <DesktopSubmenu
               submenuItems={showSubmenu.submenuItems!}
-              onMouseLeave={() => setShowSubmenu({ active: false })}
+              onMouseLeave={() =>
+                setShowSubmenu({ active: false, submenuItems: [] })
+              }
             />
           )}
         </Nav>

@@ -5,27 +5,39 @@ type SubmenuProps = {
   submenuItems: {
     url: string;
     title: string;
-    links?: { url: string; title: string }[];
+    links?: { url: string; title: string }[] | undefined;
   }[];
   onMouseLeave: () => void;
 };
 
 function Submenu({ submenuItems }: SubmenuProps) {
+  const submenuItemsWithSublinks = submenuItems.filter(({ links }) => {
+    if (links) return links.length > 0;
+  });
+  const submenuItemsWithoutSublinks = submenuItems.filter(
+    ({ links }) => !links || links?.length === 0
+  );
+
   return (
     <Container>
       <GridContainer>
-        {submenuItems.map(({ url, title, links }, index) => (
+        <Wrapper>
+          {submenuItemsWithoutSublinks.map(({ url, title }, index) => (
+            <NextLink key={index} href={url} passHref>
+              <Link bold>{title}</Link>
+            </NextLink>
+          ))}
+        </Wrapper>
+        {submenuItemsWithSublinks.map(({ url, title, links }, index) => (
           <Wrapper key={index}>
-            <>
-              <NextLink href={url} passHref>
-                <MainLink>{title}</MainLink>
+            <NextLink href={url} passHref>
+              <Link bold>{title}</Link>
+            </NextLink>
+            {links?.map((link, index) => (
+              <NextLink key={index} href={link.url}>
+                <Link>{link.title}</Link>
               </NextLink>
-              {links?.map((link, index) => (
-                <NextLink key={index} href={link.url}>
-                  <SubLink>{link.title}</SubLink>
-                </NextLink>
-              ))}
-            </>
+            ))}
           </Wrapper>
         ))}
       </GridContainer>
@@ -60,12 +72,9 @@ const GridContainer = styled.div`
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
 `;
 
-const MainLink = styled.a`
-  font-weight: bold;
-`;
-const SubLink = styled.a`
+const Link = styled.a<{ bold?: boolean }>`
+  font-weight: ${({ bold }) => (bold ? "bold" : null)};
   border-bottom: 1px solid lightgray;
 `;
