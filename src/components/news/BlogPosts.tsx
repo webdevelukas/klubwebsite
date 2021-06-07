@@ -32,6 +32,11 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   grid-gap: 2rem;
+  padding: 0 1rem;
+
+  @media screen and (min-width: 576px) {
+    padding: 0;
+  }
 `;
 
 const Headline = styled.h2`
