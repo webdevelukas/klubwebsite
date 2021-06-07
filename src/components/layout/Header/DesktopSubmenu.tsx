@@ -16,16 +16,16 @@ function Submenu({ submenuItems }: SubmenuProps) {
       <GridContainer>
         {submenuItems.map(({ url, title, links }, index) => (
           <Wrapper key={index}>
-            <NextLink href={url}>
-              <>
+            <>
+              <NextLink href={url} passHref>
                 <MainLink>{title}</MainLink>
-                {links?.map((link, index) => (
-                  <NextLink key={index} href={link.url}>
-                    <SubLink>{link.title}</SubLink>
-                  </NextLink>
-                ))}
-              </>
-            </NextLink>
+              </NextLink>
+              {links?.map((link, index) => (
+                <NextLink key={index} href={link.url}>
+                  <SubLink>{link.title}</SubLink>
+                </NextLink>
+              ))}
+            </>
           </Wrapper>
         ))}
       </GridContainer>
