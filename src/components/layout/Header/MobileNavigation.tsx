@@ -11,11 +11,11 @@ type NavigationProps = {
 
 function Navigation({ open }: NavigationProps) {
   const { scrollPosition } = useScrollPosition();
-  const navItemsWithSublinks = mainNavItems.filter(
-    ({ submenuItems }) => submenuItems.length > 0
-  );
+  const navItemsWithSublinks = mainNavItems.filter(({ submenuItems }) => {
+    if (submenuItems) return submenuItems.length > 0;
+  });
   const navItemsWithoutSublinks = mainNavItems.filter(
-    ({ submenuItems }) => submenuItems.length === 0
+    ({ submenuItems }) => !submenuItems || submenuItems?.length === 0
   );
 
   useEffect(() => {
