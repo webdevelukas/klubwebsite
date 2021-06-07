@@ -56,8 +56,8 @@ function Navigation({ open }: NavigationProps) {
           <Title>Allgemein</Title>
           <LinkList>
             {navItemsWithoutSublinks.map(({ url, title }, index) => (
-              <NextLink href={url} passHref>
-                <Container key={index}>{title}</Container>
+              <NextLink key={index} href={url} passHref>
+                <Container>{title}</Container>
               </NextLink>
             ))}
           </LinkList>
