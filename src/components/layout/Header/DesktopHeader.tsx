@@ -2,7 +2,7 @@ import styled from "styled-components";
 import NextLink from "next/link";
 import { useState } from "react";
 import BecomeMember from "components/BecomeMember";
-import Submenu from "./Submenu";
+import DesktopSubmenu from "./DesktopSubmenu";
 import mainNavItems from "../../../api/mainNavItems";
 
 type DesktopHeaderProps = {
@@ -51,7 +51,7 @@ export function DesktopHeader({ headerIsVisible }: DesktopHeaderProps) {
           ))}
           {/* Is the non-null assertion operator "!" correct in this case? */}
           {showSubmenu.active && showSubmenu.submenuItems!?.length > 0 && (
-            <Submenu
+            <DesktopSubmenu
               submenuItems={showSubmenu.submenuItems!}
               onMouseLeave={() => setShowSubmenu({ active: false })}
             />
