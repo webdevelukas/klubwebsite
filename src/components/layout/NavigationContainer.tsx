@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import NavigationBar from "./NavigationBar";
-import Navigation from "./Navigation";
+import MobileNavigation from "./Header/MobileNavigation";
 import { useRouter } from "next/router";
 
 function NavigationContainer() {
@@ -22,7 +22,7 @@ function NavigationContainer() {
   return (
     <>
       <NavigationBar open={open} setOpen={setOpen} />
-      <Navigation open={open} />
+      <MobileNavigation open={open} />
     </>
   );
 }

@@ -8,6 +8,7 @@ export default createGlobalStyle`${css`
   }
   html {
     --main-color: 130, 0, 0;
+    --secondary-color: 255, 85, 76;
     --max-content-width: 1366px;
 
     font-family: Cairo, sans-serif;
