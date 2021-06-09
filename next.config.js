@@ -1,6 +1,6 @@
 module.exports = {
   images: {
-    domains: ["media.graphcms.com"],
+    domains: ["media.graphcms.com", "images.unsplash.com"],
     deviceSizes: [
       180,
       360,
