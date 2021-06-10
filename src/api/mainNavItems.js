@@ -115,7 +115,7 @@ const mainNavItems = [
     ],
   },
   { url: "/", title: "Partner", submenuItems: [] },
-  { url: "/", title: "Kontakt", submenuItems: [] },
+  { url: "/verein/kontakt", title: "Kontakt", submenuItems: [] },
 ];
 
 export default mainNavItems;

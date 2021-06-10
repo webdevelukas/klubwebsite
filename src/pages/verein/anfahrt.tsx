@@ -14,10 +14,13 @@ function AnfahrtsPage() {
         marginHeight={0}
         marginWidth={0}
         src="https://www.openstreetmap.org/export/embed.html?bbox=11.561028957366945%2C48.46811269807975%2C11.570041179656984%2C48.473333821256304&amp;layer=mapnik&amp;marker=48.470723326820135%2C11.565535068511963"
-      ></iframe>
-      <br />
+      />
       <small>
-        <a href="https://www.openstreetmap.org/?mlat=48.47072&amp;mlon=11.56554#map=17/48.47072/11.56554">
+        <a
+          href="https://www.openstreetmap.org/?mlat=48.47072&amp;mlon=11.56554#map=17/48.47072/11.56554"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           View Larger Map
         </a>
       </small>

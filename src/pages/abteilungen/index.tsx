@@ -82,7 +82,7 @@ const GridContainer = styled.div`
 const DepartmentBox = styled.div`
   position: relative;
   display: grid;
-  grid-template-rows: 12rem 4rem;
+  grid-template-rows: 16rem;
   background-color: white;
 `;
 

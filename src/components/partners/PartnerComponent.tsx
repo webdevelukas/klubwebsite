@@ -9,7 +9,7 @@ function PartnerComponent({ partner }: PartnerProps) {
   const { logo, url } = partner;
 
   return (
-    <a href={url} target="_blank">
+    <a href={url} target="_blank" rel="noopener noreferrer">
       <NextImage
         src={logo.url}
         alt={logo.alt}
