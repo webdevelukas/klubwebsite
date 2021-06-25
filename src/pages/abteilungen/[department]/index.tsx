@@ -26,7 +26,7 @@ function DepartmentPage({ department, groups, users }: DepartmentPageProps) {
         <Headline>Abteilung Fußball</Headline>
         <GridContainer>
           {groups.map(({ name, slug, image }, index) => (
-            <NextLink key={index} href={slug}>
+            <NextLink key={index} href={`${department}/${slug}`} passHref>
               <a>
                 <DepartmentBox>
                   <ColorBox>
@@ -89,19 +89,19 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     },
     {
       name: "U15-Junioren",
-      slug: "u15",
+      slug: "u15-junioren",
       image:
         "https://www.tsvpaunzhausen.de/files/8915/7134/8596/2019-10-14_TSV_C_Mannschaftsfoto.jpg",
     },
     {
       name: "U13-Junioren",
-      slug: "u13",
+      slug: "u13-junioren",
       image:
         "https://www.tsvpaunzhausen.de/files/8915/7134/8596/2019-10-14_TSV_C_Mannschaftsfoto.jpg",
     },
     {
       name: "U9-Junioren",
-      slug: "u9",
+      slug: "u9-junioren",
       image:
         "https://www.tsvpaunzhausen.de/files/1315/7441/7477/U7_U9_TSV-Paunzhausen_Mannschaftsbild.jpg",
     },
@@ -184,16 +184,13 @@ const Container = styled.div`
   grid-template-columns: 1fr;
   grid-auto-rows: auto;
   grid-template-areas:
-    "titleimage"
     "article"
     "aside";
   grid-column-gap: 2rem;
 
   @media screen and (min-width: 576px) {
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas:
-      "titleimage titleimage titleimage"
-      "article article aside";
+    grid-template-areas: "article article aside";
   }
 `;
 

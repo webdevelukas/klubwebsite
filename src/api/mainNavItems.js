@@ -31,14 +31,14 @@ const mainNavItems = [
         slug: "fussball",
         links: [
           {
-            url: "/abteilungen/fussball/1-mannschaft",
-            title: "1. Mannschaft",
-            slug: "1-mannschaft",
+            url: "/abteilungen/fussball/herren-1",
+            title: "Herren 1",
+            slug: "herren-1",
           },
           {
-            url: "/abteilungen/fussball/2-mannschaft",
-            title: "2. Mannschaft",
-            slug: "2-mannschaft",
+            url: "/abteilungen/fussball/herren-2",
+            title: "Herren 2",
+            slug: "herren-2",
           },
           {
             url: "/abteilungen/fussball/u15-junioren",
@@ -74,13 +74,13 @@ const mainNavItems = [
         links: [
           {
             url: "/abteilungen/tennis/1-mannschaft",
-            title: "1. Mannschaft",
-            slug: "1-mannschaft",
+            title: "Herren 1",
+            slug: "herren-1",
           },
           {
             url: "/abteilungen/tennis/2-mannschaft",
-            title: "2. Mannschaft",
-            slug: "2-mannschaft",
+            title: "Herren 2",
+            slug: "herren-2",
           },
           {
             url: "/abteilungen/tennis/u15-junioren",
