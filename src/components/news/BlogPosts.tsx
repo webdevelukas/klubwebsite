@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { colors } from "styles/colors";
 import { Posts } from "types/posts";
 import BlogPostSmall from "./BlogPostSmall";
 
@@ -43,7 +42,7 @@ const Headline = styled.h2`
   font-size: 1rem;
   text-transform: uppercase;
   justify-self: center;
-  color: ${colors.main.default};
+  color: var(--main-color);
   text-align: center;
   margin-bottom: 1rem;
 `;

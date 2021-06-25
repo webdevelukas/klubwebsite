@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { colors } from "styles/colors";
 import Gallery from "components/images/Gallery";
 import renderDate from "services/renderDate";
 import { Post } from "types/posts";
@@ -121,7 +120,7 @@ export default NewsPage;
 const Container = styled.div`
   background: white;
   padding-bottom: 4rem;
-  border-bottom: 0.25rem solid ${colors.main.default};
+  border-bottom: 0.25rem solid var(--main-color);
   max-width: 900px;
   margin: 0 auto;
 `;
@@ -145,7 +144,7 @@ const Date = styled.p`
   }
 `;
 const Headline = styled.h1`
-  color: ${colors.main.default};
+  color: var(--main-color);
   margin: 0 0 1rem;
   line-height: 2.25rem;
 
@@ -180,7 +179,7 @@ const Author = styled.p`
 `;
 const HorizontalLine = styled.div`
   margin: 2rem auto;
-  border-bottom: 1px solid ${colors.main.default};
+  border-bottom: 1px solid var(--main-color);
   width: 90%;
 `;
 const AuthorContainer = styled.div`

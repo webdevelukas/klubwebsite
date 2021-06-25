@@ -7,9 +7,18 @@ export default createGlobalStyle`${css`
     box-sizing: border-box;
   }
   html {
-    --main-color: 130, 0, 0;
-    --secondary-color: 255, 85, 76;
+    --main-color: hsl(0, 100%, 25%);
+    --main-color-shadow: hsla(0, 100%, 25%, 15%);
+    --main-color-overlay: hsla(0, 100%, 25%, 75%);
+    --text-color: hsl(0, 100%, 5%);
+    --highlight-color: hsl(0, 100%, 55%);
     --max-content-width: 1366px;
+    --content-background: white;
+    --content-background-alternative: #efefef;
+    --small-spacing: 0.5rem;
+    --medium-spacing: 1rem;
+    --large-spacing: 2rem;
+    --border-radius: 3px;
 
     font-family: Cairo, sans-serif;
     font-weight: 400;

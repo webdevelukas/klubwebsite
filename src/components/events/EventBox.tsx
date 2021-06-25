@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { colors } from "styles/colors";
 import renderTime from "services/renderTime";
 import renderDayAndDate from "services/renderDayAndDate";
 import type { Event } from "types";
@@ -44,20 +43,20 @@ const Article = styled.article`
   position: relative;
   padding: 1rem;
   background: white;
-  border-bottom: 0.25rem solid ${colors.main.default};
+  border-bottom: 0.25rem solid var(--main-color);
 `;
 
 const Date = styled.p`
   font-size: 1.75rem;
   line-height: 1.75rem;
   font-weight: bold;
-  color: ${colors.main.default};
+  color: var(--main-color);
   text-transform: uppercase;
   margin-bottom: 0.5rem;
 `;
 
 const Time = styled.p`
-  color: ${colors.main.default};
+  color: var(--main-color);
   text-transform: uppercase;
   line-height: 1rem;
 `;

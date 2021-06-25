@@ -175,7 +175,7 @@ const Aside = styled.aside`
   padding: 1rem 1rem 2rem;
   background: white;
   align-self: start;
-  border-bottom: 0.25rem solid rgb(var(--main-color));
+  border-bottom: 0.25rem solid var(--main-color);
   row-gap: 2rem;
 `;
 
@@ -213,7 +213,7 @@ const DepartmentBox = styled.div`
 
 const DepartmentName = styled.h3`
   position: relative;
-  color: rgb(var(--main-color));
+  color: var(--main-color);
 `;
 
 const ColorBox = styled.div`
@@ -222,13 +222,13 @@ const ColorBox = styled.div`
   padding: 0.25rem 1rem;
   background-color: white;
   z-index: 10;
-  border-bottom: 0.25rem solid rgb(var(--main-color));
+  border-bottom: 0.25rem solid var(--main-color);
 `;
 
 const H2 = styled.h2`
   text-transform: uppercase;
   justify-self: center;
-  color: rgb(var(--main-color));
+  color: var(--main-color);
   text-align: center;
   margin-bottom: 1rem;
 `;

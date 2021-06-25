@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import PartnerComponent from "./PartnerComponent";
 import { Partners } from "types/partners";
-import { colors } from "styles/colors";
 
 type PartnersSectionProps = {
   partners: Partners;
@@ -35,7 +34,7 @@ const Headline = styled.h2`
   font-size: 1rem;
   text-transform: uppercase;
   justify-self: center;
-  color: ${colors.main.default};
+  color: var(--main-color);
   text-align: center;
   margin-bottom: 1rem;
 `;

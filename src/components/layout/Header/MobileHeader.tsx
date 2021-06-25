@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import NextLink from "next/link";
-import { colors } from "styles/colors";
 
 type MobileHeaderProps = {
   open: boolean;
@@ -43,8 +42,8 @@ const Header = styled.header<{ headerIsVisible: boolean }>`
   width: 100%;
   height: 4.5rem;
   padding: 0 0.75rem;
-  background: ${colors.main.default};
-  box-shadow: 0 0.25rem 0 ${colors.main.shadow};
+  background: var(--main-color);
+  box-shadow: 0 0.25rem 0 var(--main-color-shadow);
   z-index: 2000;
   transition: all 150ms ease-in-out;
   top: 0;

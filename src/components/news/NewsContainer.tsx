@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import SingleBlogPost from "./SingleBlogPost";
-import { colors } from "styles/colors";
 import { Posts } from "types/posts";
 
 type NewsContainerProps = {
@@ -30,14 +29,14 @@ const Wrapper = styled.div`
 const Container = styled.div`
   padding: 1rem 0.5rem 2rem;
   background: white;
-  border-bottom: 0.25rem solid ${colors.main.default};
+  border-bottom: 0.25rem solid var(--main-color);
 `;
 
 const Headline = styled.h2`
   font-size: 1rem;
   text-transform: uppercase;
   justify-self: center;
-  color: ${colors.main.default};
+  color: var(--main-color);
   text-align: center;
   margin-bottom: 0.5rem;
 

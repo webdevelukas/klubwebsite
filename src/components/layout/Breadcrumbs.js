@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { colors } from "styles/colors";
 import NextLink from "next/link";
+
 function Breadcrumbs({ breadcrumbs, route }) {
   return (
     <Container>
@@ -22,7 +22,7 @@ function Breadcrumbs({ breadcrumbs, route }) {
 }
 export default Breadcrumbs;
 const Container = styled.div`
-  background: ${colors.secondary};
+  background: var(--highlight-color);
   padding: 0.25rem 0.75rem;
 `;
 const Small = styled.small`
@@ -30,7 +30,7 @@ const Small = styled.small`
   flex-wrap: wrap;
 `;
 const Link = styled.a`
-  color: ${colors.main.default};
+  color: var(--main-color);
   ::after {
     margin: 0 0.5rem;
     content: ">";

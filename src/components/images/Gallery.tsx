@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { colors } from "styles/colors";
 import Lightbox from "./Lightbox";
 import useMediaQuery from "hooks/useMediaQuery";
 import useScrollPosition from "hooks/useScrollPosition";
@@ -70,7 +69,7 @@ const GallerySection = styled.section`
 const ImageOverlay = styled.div`
   z-index: 100;
   position: absolute;
-  background: ${colors.main.overlay};
+  background: var(--main-color-overlay);
   width: 100%;
   height: 100%;
   display: flex;

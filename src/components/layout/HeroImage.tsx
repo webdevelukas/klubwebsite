@@ -1,15 +1,13 @@
 import styled from "styled-components";
 import NextImage from "next/image";
 
-export type Props = {
+export type HeroImageProps = {
   image: { url: string; alt?: string };
   title: string;
   subtitle: string;
 };
 
-function HeroImage(props: Props) {
-  const { image, title, subtitle } = props;
-
+function HeroImage({ image, title, subtitle }: HeroImageProps) {
   return (
     <Container>
       <ImageWrapper>

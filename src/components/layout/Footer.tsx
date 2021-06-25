@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import BecomeMember from "../BecomeMember";
-import { colors } from "styles/colors";
 import LinkList from "../LinkList";
 import NextLink from "next/link";
 
@@ -38,7 +37,7 @@ const FooterContainer = styled.footer`
   grid-auto-flow: row;
   grid-gap: 2rem;
   padding: 1.5rem 3rem;
-  background: ${colors.main.default};
+  background: var(--main-color);
   color: white;
 `;
 
