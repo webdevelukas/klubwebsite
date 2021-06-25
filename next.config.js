@@ -1,6 +1,10 @@
 module.exports = {
   images: {
-    domains: ["media.graphcms.com"],
+    domains: [
+      "media.graphcms.com",
+      "images.unsplash.com",
+      "www.tsvpaunzhausen.de",
+    ],
     deviceSizes: [
       180,
       360,
