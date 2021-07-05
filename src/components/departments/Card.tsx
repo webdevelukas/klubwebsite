@@ -4,9 +4,10 @@ import { Department, Group } from "../../types";
 
 export type Props = {
   data: Department | Group;
+  small?: true;
 };
 
-function Card({ data }: Props) {
+function Card({ data, small }: Props) {
   const { name, image } = data;
 
   return (
@@ -14,9 +15,12 @@ function Card({ data }: Props) {
       <Overlay>
         <H3>{name}</H3>
       </Overlay>
-      <ImageWrapper>
+      <ImageWrapper small={small}>
         <NextImage
-          src={image.url}
+          src={
+            image.url ||
+            "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+          }
           alt={image.alt || name}
           layout="fill"
           objectFit="cover"
@@ -35,7 +39,7 @@ const Container = styled.article`
   grid-auto-flow: row;
 `;
 
-const ImageWrapper = styled.div`
+const ImageWrapper = styled.div<{ small: boolean }>`
   position: relative;
   padding-bottom: 40%;
   width: 100%;
@@ -46,7 +50,7 @@ const ImageWrapper = styled.div`
   }
 
   @media screen and (min-width: 576px) {
-    padding-bottom: 60%;
+    padding-bottom: ${({ small }) => (small ? "30%" : "60%")};
   }
 `;
 

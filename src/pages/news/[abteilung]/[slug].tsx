@@ -6,6 +6,8 @@ import graphCMS from "services/graphCMS";
 import NextImage from "next/image";
 import AvatarList from "components/users/AvatarList";
 import NewsListContainer from "components/news/NewsListContainer";
+import Card from "components/departments/Card";
+import NextLink from "next/link";
 
 type NewsPageProps = {
   post: Post;
@@ -13,7 +15,8 @@ type NewsPageProps = {
 };
 
 function NewsPage({ post, posts }: NewsPageProps) {
-  const { title, titleimage, content, event, author, images } = post;
+  const { title, titleimage, content, event, author, images, department } =
+    post;
 
   return (
     <PageWrapper>
@@ -44,8 +47,22 @@ function NewsPage({ post, posts }: NewsPageProps) {
           )}
         </ContentContainer>
         <Aside>
-          {author && <AvatarList users={[author]} title="Autor" />}{" "}
+          {author && <AvatarList users={[author]} title="Autor" />}
           <NewsListContainer posts={posts} title="Weitere News" />
+          {department && (
+            <NextLink href={`/abteilungen/${department.uid}/`} passHref>
+              <a>
+                <Card
+                  data={{
+                    name: department.name,
+                    image: { url: "", alt: "" },
+                    slug: department.uid,
+                  }}
+                  small
+                />
+              </a>
+            </NextLink>
+          )}
         </Aside>
       </Container>
     </PageWrapper>
@@ -116,6 +133,10 @@ export async function getStaticProps({ params }: getStaticProps) {
           alt
         }
       }
+      department {
+        name
+        uid
+      }
     }
   }`,
     { slug: slug }
@@ -173,6 +194,7 @@ const Container = styled.div`
   grid-template-areas:
     "content"
     "aside";
+  align-items: start;
   row-gap: 2rem;
   max-width: var(--max-content-width);
   margin: 0 auto;
