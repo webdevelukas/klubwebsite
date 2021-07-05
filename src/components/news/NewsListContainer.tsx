@@ -1,30 +1,43 @@
 import styled from "styled-components";
 import List from "../../elements/List";
-import { NewsArticles } from "../../types";
+import PageSection from "../../elements/PageSection";
+import { Posts } from "../../types";
 import NewsTeaserItem from "./NewsTeaserItem";
 import NewsListItem from "./NewsListItem";
 
-export type NewsListContainerProps = { articles: NewsArticles };
-function NewsContainer({ articles }: NewsListContainerProps) {
-  const newestArticle = articles[0];
-  const slicedArticles = articles.slice(1, 4);
+export type NewsListContainerProps = {
+  posts: Posts;
+  title?: string;
+  withoutTeaser?: boolean;
+  gridArea?: string;
+};
+function NewsContainer({
+  posts,
+  title,
+  withoutTeaser,
+  gridArea,
+}: NewsListContainerProps) {
+  const newestPost = posts[0];
+  const slicedPosts = withoutTeaser ? posts.slice(0, 4) : posts.slice(1, 4);
 
   return (
-    <>
-      {articles.length === 0 && (
-        <NoNewsMessage>
-          Sorry, but there is nothing we can talk about.
-        </NoNewsMessage>
-      )}
-      {articles.length > 0 && (
-        <List>
-          <NewsTeaserItem article={newestArticle} />
-          {slicedArticles.map((article, index) => (
-            <NewsListItem key={index} article={article} />
-          ))}
-        </List>
-      )}
-    </>
+    <PageSection title={title} gridArea={gridArea}>
+      <>
+        {posts.length === 0 && (
+          <NoNewsMessage>
+            Sorry, but there is nothing we can talk about.
+          </NoNewsMessage>
+        )}
+        {posts.length > 0 && (
+          <List>
+            {!withoutTeaser && <NewsTeaserItem post={newestPost} />}
+            {slicedPosts.map((post, index) => (
+              <NewsListItem key={index} post={post} />
+            ))}
+          </List>
+        )}
+      </>
+    </PageSection>
   );
 }
 

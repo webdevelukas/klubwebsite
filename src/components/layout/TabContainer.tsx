@@ -2,8 +2,13 @@ import { useState } from "react";
 import styled from "styled-components";
 import { Matches, SoccerStandings, TeamMembers } from "../../types";
 import FixturesList from "../sports/fixtures/FixturesList";
-import Standings from "../sports/standings/Standings";
-import TeamMembersGrid from "../sports/teamMembers/TeamMembersGrid";
+import dynamic from "next/dynamic";
+import useMediaQuery from "hooks/useMediaQuery";
+
+const Standings = dynamic(() => import("../sports/standings/Standings"));
+const TeamMembersGrid = dynamic(
+  () => import("../sports/teamMembers/TeamMembersGrid")
+);
 
 export type TabContainerProps = {
   matches: Matches;
@@ -12,6 +17,8 @@ export type TabContainerProps = {
 };
 function TabContainer({ matches, standings, teamMembers }: TabContainerProps) {
   const [activeTab, setActiveTab] = useState(0);
+  const [isDesktop] = useMediaQuery("(min-width: 992px)");
+  const fixturesLayout = isDesktop ? "detailed" : "minified";
 
   return (
     <section>
@@ -34,7 +41,7 @@ function TabContainer({ matches, standings, teamMembers }: TabContainerProps) {
       </Tabs>
       <div>
         {matches && activeTab === 0 && (
-          <FixturesList layout="minified" matches={matches} />
+          <FixturesList layout={fixturesLayout} matches={matches} />
         )}
         {standings && activeTab === 1 && <Standings standings={standings} />}
         {teamMembers && activeTab === 2 && (
@@ -63,7 +70,7 @@ const Tab = styled.div<{ active: boolean }>`
       : "var(--content-background-alternative)"};
   text-align: center;
   color: ${({ active }) =>
-    active ? "var(--text-color)" : "var(--main-color)"};
+    active ? "var(--main-color)" : "var(--highlight-color)"};
   cursor: pointer;
 `;
 

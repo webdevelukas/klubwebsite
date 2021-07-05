@@ -36,11 +36,6 @@ function PageLayout({ children, partners }: PageLayoutProps) {
 export default PageLayout;
 
 const Main = styled.main`
-  max-width: var(--max-content-width);
   margin: 0 auto;
-
-  @media (min-width: 576px) {
-    max-width: calc(var(--max-content-width) + 2rem);
-    padding: 0 1rem;
-  }
+  max-width: var(--max-page-width);
 `;

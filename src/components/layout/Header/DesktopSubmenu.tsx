@@ -77,4 +77,5 @@ const Wrapper = styled.div`
 const Link = styled.a<{ bold?: boolean }>`
   font-weight: ${({ bold }) => (bold ? "bold" : null)};
   border-bottom: 1px solid lightgray;
+  color: var(--text-color);
 `;

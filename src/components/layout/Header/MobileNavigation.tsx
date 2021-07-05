@@ -40,7 +40,7 @@ function Navigation({ open }: NavigationProps) {
             <NextLink href={url}>
               <Title>{title}</Title>
             </NextLink>
-            <SubmenuItems>
+            <SubmenuGrid>
               {submenuItems?.map(
                 (item: { url: string; title: string }, index: number) => (
                   <NextLink key={index} href={item.url} passHref>
@@ -48,7 +48,7 @@ function Navigation({ open }: NavigationProps) {
                   </NextLink>
                 )
               )}
-            </SubmenuItems>
+            </SubmenuGrid>
           </Category>
         ))}
         <Category>
@@ -72,7 +72,7 @@ const Nav = styled.nav<{ open: boolean }>`
   z-index: 1002;
   position: fixed;
   top: 0;
-  padding-top: ${({ open }) => (open ? "7.5rem" : null)};
+  padding-top: ${({ open }) => (open ? "5.5rem" : null)};
   bottom: 0;
   width: 100%;
   background-color: var(--content-background-alternative);
@@ -122,7 +122,7 @@ const Title = styled.a`
   color: var(--main-color);
 `;
 
-const SubmenuItems = styled.div`
+const SubmenuGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   grid-auto-rows: 6rem;
@@ -131,7 +131,12 @@ const SubmenuItems = styled.div`
 `;
 
 const SubmenuItem = styled.a`
-  background: white;
-  border-bottom: 0.25rem solid var(--highlight-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--highlight-color-overlay);
   padding: 0.5rem;
+  color: white;
+  font-weight: bold;
+  border-radius: var(--border-radius);
 `;
