@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { colors } from "styles/colors";
 import renderDate from "services/renderDate";
 import NextLink from "next/link";
 import { Posts } from "types/posts";
@@ -56,7 +55,7 @@ const Article = styled.article`
   display: grid;
   grid-template-rows: minmax(18rem, 1fr) auto;
   grid-area: blogpost;
-  box-shadow: 0 0.25rem 0 ${colors.main.shadow};
+  box-shadow: 0 0.25rem 0 var(--main-color-shadow);
 `;
 
 const Picture = styled.picture`
@@ -68,7 +67,7 @@ const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: ${colors.main.default};
+  background: var(--main-color);
   color: white;
   padding: 0.75rem;
 

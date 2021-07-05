@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { colors } from "styles/colors";
 import { Author } from "types/author";
 import NextImage from "next/image";
 
@@ -29,7 +28,7 @@ export default BoardMember;
 const Container = styled.article``;
 
 const H2 = styled.h2`
-  color: ${colors.main.default};
+  color: var(--main-color);
   text-transform: uppercase;
   line-height: 1.5rem;
   margin-top: 0.5rem;

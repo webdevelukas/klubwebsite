@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { colors } from "styles/colors";
 
 function Datenschutz() {
   const title = "Datenschutz";
@@ -20,10 +19,10 @@ export async function getStaticProps() {
 const Container = styled.div`
   background: white;
   padding: 2rem 0 4rem;
-  border-bottom: 0.25rem solid ${colors.main.default};
+  border-bottom: 0.25rem solid var(--main-color);
 `;
 const Headline = styled.h1`
-  color: ${colors.main.default};
+  color: var(--main-color);
   margin-bottom: 1rem;
   line-height: 2.25rem;
   text-transform: uppercase;

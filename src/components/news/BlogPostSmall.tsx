@@ -12,31 +12,30 @@ type BlogPostSmallProps = {
 function BlogPostSmall({ post }: BlogPostSmallProps) {
   const { title, titleimage, event, department, groups, slug } = post;
   return (
-    <Article>
-      <Picture>
-        <NextImage
-          src={titleimage.url}
-          alt={titleimage.alt}
-          layout="fill"
-          objectFit="cover"
-          quality={30}
-          priority
-        />
-      </Picture>
-      <NextLink href={`/news/${department.uid}/${slug}`} passHref>
-        <a>
+    <NextLink href={`/news/${department.uid}/${slug}`} passHref>
+      <a>
+        <Article>
+          <Picture>
+            <NextImage
+              src={titleimage.url}
+              alt={titleimage.alt}
+              layout="fill"
+              objectFit="cover"
+              quality={30}
+              priority
+            />
+          </Picture>
           <TextContainer>
             <Headline>{title}</Headline>
-
             <Details>
               {renderDate(event.dateandtime)} {department && "-"}{" "}
               {department?.name}{" "}
               {groups && `- ${renderGroupsWithSeperator(groups)}`}
             </Details>
           </TextContainer>
-        </a>
-      </NextLink>
-    </Article>
+        </Article>
+      </a>
+    </NextLink>
   );
 }
 export default BlogPostSmall;
@@ -49,25 +48,31 @@ function renderGroupsWithSeperator(groups: Groups) {
 }
 
 const Article = styled.article`
-  position: relative;
   display: grid;
-  grid-template-rows: minmax(16rem, 1fr) auto;
+  grid-template-rows: 1fr 0.4fr;
 `;
 
 const Picture = styled.picture`
   position: relative;
-  height: 100%;
+  width: 100%;
+  padding-bottom: 70%;
 `;
 
 const TextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: white;
-  padding: 0.75rem;
+  display: grid;
+  grid-template-rows: auto auto;
+  align-content: center;
+  row-gap: var(--extra-small-spacing);
+  background: var(--content-background);
+  padding: var(--medium-spacing);
+  color: var(--text-color);
+
+  :hover {
+    color: var(--highlight-color);
+  }
 
   @media screen and (min-width: 1100px) {
-    padding: 1.5rem;
+    padding: var(--small-spacing) var(--large-spacing);
   }
 `;
 
@@ -81,7 +86,6 @@ const Headline = styled.h1`
 `;
 
 const Details = styled.p`
-  margin: 0;
-  font-size: 0.875rem;
-  font-weight: lighter;
+  font-size: 0.75rem;
+  color: var(--text-color);
 `;

@@ -1,6 +1,9 @@
+import { Image } from "./image";
+
 export type Department = {
   name: string;
-  image: { url: string; alt?: string };
+  image: Image;
+  slug: string;
 };
 
 export type Departments = Department[];

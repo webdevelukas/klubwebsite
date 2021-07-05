@@ -1,24 +1,30 @@
 import styled from "styled-components";
 
-type Props = {
-  title: string;
-  children: JSX.Element;
+type PageSectionProps = {
+  title?: string;
+  children: JSX.Element | JSX.Element[];
+  gridArea?: string;
 };
 
-function PageSection({ title, children }: Props) {
+function PageSection({ title, children, gridArea }: PageSectionProps) {
   return (
-    <section>
-      <H3>{title}</H3>
+    <Section gridArea={gridArea}>
+      {title && <H3>{title}</H3>}
       {children}
-    </section>
+    </Section>
   );
 }
 
 export default PageSection;
 
+const Section = styled.section<{ gridArea?: string }>`
+  grid-area: ${({ gridArea }) => gridArea};
+  box-shadow: 0 0.25rem 0 var(--main-color-shadow);
+`;
+
 const H3 = styled.h3`
   background-color: var(--content-background);
-  padding: var(--medium-spacing) 0;
+  padding: var(--large-spacing) 0 var(--small-spacing);
   color: var(--main-color);
   text-transform: uppercase;
   font-size: 1.25rem;

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { colors } from "styles/colors";
 
 function NewsletterContainer() {
   return (
@@ -17,9 +16,9 @@ export default NewsletterContainer;
 const Container = styled.section`
   display: grid;
   grid-area: newslettercontainer;
-  background-color: ${colors.main.default};
+  background-color: var(--main-color);
   padding: 2rem;
-  box-shadow: 0 0.25rem 0 ${colors.main.shadow};
+  box-shadow: 0 0.25rem 0 var(--main-color-shadow);
 
   grid-row-gap: 1rem;
 
@@ -42,13 +41,13 @@ const Headline = styled.h2`
 const Input = styled.input`
   padding: 0.5rem 1rem;
   min-width: 300px;
-  box-shadow: 0 0.25rem 0 ${colors.secondary};
+  box-shadow: 0 0.25rem 0 var(--highlight-color);
 `;
 
 const Button = styled.button`
   background-color: white;
-  color: ${colors.secondary};
+  color: var(--highlight-color);
   font-weight: bold;
   padding: 0.5rem 1rem;
-  box-shadow: 0 0.25rem 0 ${colors.secondary};
+  box-shadow: 0 0.25rem 0 var(--highlight-color);
 `;

@@ -1,7 +1,6 @@
 import useScrollPosition from "hooks/useScrollPosition";
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { colors } from "styles/colors";
 import NextLink from "next/link";
 import mainNavItems from "api/mainNavItems";
 
@@ -41,7 +40,7 @@ function Navigation({ open }: NavigationProps) {
             <NextLink href={url}>
               <Title>{title}</Title>
             </NextLink>
-            <SubmenuItems>
+            <SubmenuGrid>
               {submenuItems?.map(
                 (item: { url: string; title: string }, index: number) => (
                   <NextLink key={index} href={item.url} passHref>
@@ -49,7 +48,7 @@ function Navigation({ open }: NavigationProps) {
                   </NextLink>
                 )
               )}
-            </SubmenuItems>
+            </SubmenuGrid>
           </Category>
         ))}
         <Category>
@@ -73,10 +72,10 @@ const Nav = styled.nav<{ open: boolean }>`
   z-index: 1002;
   position: fixed;
   top: 0;
-  padding-top: ${({ open }) => (open ? "7.5rem" : null)};
+  padding-top: ${({ open }) => (open ? "5.5rem" : null)};
   bottom: 0;
   width: 100%;
-  background-color: ${colors.neutral};
+  background-color: var(--content-background-alternative);
   max-height: ${({ open }) => (open ? "100%" : 0)};
   transition: all 0.3s ease-in-out;
   overflow-y: auto;
@@ -101,7 +100,7 @@ const LinkList = styled.div`
   display: grid;
   grid-auto-rows: 5rem;
   grid-auto-flow: auto;
-  border-bottom: 0.25rem solid rgb(var(--secondary-color));
+  border-bottom: 0.25rem solid var(--highlight-color);
 `;
 
 const Container = styled.a`
@@ -120,10 +119,10 @@ const Title = styled.a`
   align-self: center;
   font-size: 1.25rem;
   font-weight: bold;
-  color: rgb(var(--main-color));
+  color: var(--main-color);
 `;
 
-const SubmenuItems = styled.div`
+const SubmenuGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   grid-auto-rows: 6rem;
@@ -132,7 +131,12 @@ const SubmenuItems = styled.div`
 `;
 
 const SubmenuItem = styled.a`
-  background: white;
-  border-bottom: 0.25rem solid rgb(var(--secondary-color));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--highlight-color-overlay);
   padding: 0.5rem;
+  color: white;
+  font-weight: bold;
+  border-radius: var(--border-radius);
 `;

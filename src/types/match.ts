@@ -1,6 +1,8 @@
+import { Image } from "./image";
+
 export type Match = {
-  homeTeam: { name: string; logo: { url: string; alt: string } };
-  awayTeam: { name: string; logo: { url: string; alt: string } };
+  homeTeam: { name: string; logo: Image };
+  awayTeam: { name: string; logo: Image };
   result: string;
   date: string;
   time: string;

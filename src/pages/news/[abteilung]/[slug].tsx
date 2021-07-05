@@ -1,20 +1,25 @@
 import styled from "styled-components";
-import { colors } from "styles/colors";
 import Gallery from "components/images/Gallery";
 import renderDate from "services/renderDate";
-import { Post } from "types/posts";
+import { Post, Posts } from "types/posts";
 import graphCMS from "services/graphCMS";
 import NextImage from "next/image";
+import AvatarList from "components/users/AvatarList";
+import NewsListContainer from "components/news/NewsListContainer";
+import Card from "components/departments/Card";
+import NextLink from "next/link";
 
 type NewsPageProps = {
   post: Post;
+  posts: Posts;
 };
 
-function NewsPage({ post }: NewsPageProps) {
-  const { title, titleimage, content, event, author, images } = post;
+function NewsPage({ post, posts }: NewsPageProps) {
+  const { title, titleimage, content, event, author, images, department } =
+    post;
 
   return (
-    <Container>
+    <PageWrapper>
       <Picture>
         <NextImage
           src={titleimage.url}
@@ -23,40 +28,44 @@ function NewsPage({ post }: NewsPageProps) {
           objectFit="cover"
         />
       </Picture>
-      <ContentContainer>
-        <Date>{renderDate(event.dateandtime)}</Date>
-        <TextContainer>
-          <Headline>{title}</Headline>
-          <Content
-            dangerouslySetInnerHTML={{
-              __html: content.html,
-            }}
-          />
-        </TextContainer>
-        {images.length > 0 && (
-          <>
-            <HorizontalLine />
-            <Gallery images={images} />
-          </>
-        )}
-        {author && (
-          <>
-            <HorizontalLine />
-            <AuthorContainer>
-              <AuthorImage>
-                <NextImage
-                  src={author.image.url}
-                  layout="fill"
-                  objectFit="cover"
+      <Container>
+        <ContentContainer>
+          <Date>{renderDate(event.dateandtime)}</Date>
+          <TextContainer>
+            <Headline>{title}</Headline>
+            <Content
+              dangerouslySetInnerHTML={{
+                __html: content.html,
+              }}
+            />
+          </TextContainer>
+          {images.length > 0 && (
+            <>
+              <HorizontalLine />
+              <Gallery images={images} />
+            </>
+          )}
+        </ContentContainer>
+        <Aside>
+          {author && <AvatarList users={[author]} title="Autor" />}
+          <NewsListContainer posts={posts} title="Weitere News" />
+          {department && (
+            <NextLink href={`/abteilungen/${department.uid}/`} passHref>
+              <a>
+                <Card
+                  data={{
+                    name: department.name,
+                    image: { url: "", alt: "" },
+                    slug: department.uid,
+                  }}
+                  small
                 />
-              </AuthorImage>
-              <Author>{author.name}</Author>
-              <AuthorRole>{author.position}</AuthorRole>
-            </AuthorContainer>
-          </>
-        )}
-      </ContentContainer>
-    </Container>
+              </a>
+            </NextLink>
+          )}
+        </Aside>
+      </Container>
+    </PageWrapper>
   );
 }
 
@@ -67,7 +76,36 @@ type getStaticProps = {
 export async function getStaticProps({ params }: getStaticProps) {
   const { slug } = params;
 
-  const post = await graphCMS(
+  const { posts } = await graphCMS(`{
+    posts(orderBy: createdAt_DESC) {
+      slug
+      title
+      titleimage {
+        url
+        alt
+      }
+      event {
+        dateandtime
+      }
+      department {
+        name
+        uid
+      }
+      createdAt
+      content {
+        html
+      }
+    }
+    events(orderBy: dateandtime_ASC) {
+      dateandtime
+      department {name}
+      group {
+        name
+      }
+    }
+  }`);
+
+  const { post } = await graphCMS(
     `query postContent($slug: String){
     post(where: { slug: $slug }) {
       title
@@ -90,13 +128,21 @@ export async function getStaticProps({ params }: getStaticProps) {
       author {
         name
         position
-        image {url}
+        image {
+          url 
+          alt
+        }
+      }
+      department {
+        name
+        uid
       }
     }
   }`,
     { slug: slug }
   );
-  return { props: post };
+
+  return { props: { post, posts } };
 }
 
 export async function getStaticPaths() {
@@ -118,22 +164,59 @@ export async function getStaticPaths() {
 }
 
 export default NewsPage;
-const Container = styled.div`
-  background: white;
-  padding-bottom: 4rem;
-  border-bottom: 0.25rem solid ${colors.main.default};
-  max-width: 900px;
-  margin: 0 auto;
+
+const PageWrapper = styled.div`
+  display: grid;
+  grid-auto-rows: auto;
+  grid-auto-flow: row;
+
+  @media screen and (min-width: 768px) {
+    row-gap: var(--large-spacing);
+  }
 `;
+
+const Aside = styled.aside`
+  display: grid;
+  grid-area: aside;
+  align-self: start;
+  row-gap: 2rem;
+  padding: 0 var(--small-spacing);
+
+  @media screen and (min-width: 576px) {
+    padding: 0;
+  }
+`;
+
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: auto;
+  grid-template-areas:
+    "content"
+    "aside";
+  align-items: start;
+  row-gap: 2rem;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: "content aside";
+    column-gap: 2rem;
+  }
+`;
+
 const ContentContainer = styled.div`
   display: grid;
+  grid-area: content;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(auto-fill, auto);
   grid-gap: 2rem;
-  padding: 1rem 1rem 0;
+  padding: 1rem 1rem;
+  background-color: var(--content-background);
 
   @media screen and (min-width: 1100px) {
-    padding: 1rem 2rem 0;
+    padding: 1rem 2rem;
   }
 `;
 
@@ -145,7 +228,7 @@ const Date = styled.p`
   }
 `;
 const Headline = styled.h1`
-  color: ${colors.main.default};
+  color: var(--main-color);
   margin: 0 0 1rem;
   line-height: 2.25rem;
 
@@ -173,36 +256,8 @@ const Picture = styled.picture`
   width: 100%;
   height: 60vmin;
 `;
-
-const Author = styled.p`
-  text-transform: uppercase;
-  font-weight: bold;
-`;
 const HorizontalLine = styled.div`
   margin: 2rem auto;
-  border-bottom: 1px solid ${colors.main.default};
+  border-bottom: 1px solid var(--main-color);
   width: 90%;
-`;
-const AuthorContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  @media screen and (min-width: 1100px) {
-    font-size: 1.25rem;
-  }
-`;
-const AuthorImage = styled.picture`
-  position: relative;
-  width: 5rem;
-  height: 5rem;
-  border-radius: 50%;
-  margin-bottom: 0.5rem;
-
-  > div:first-child {
-    border-radius: 50%;
-  }
-`;
-const AuthorRole = styled.p`
-  line-height: 0.8rem;
 `;

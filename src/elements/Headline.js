@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { colors } from "styles/colors";
 const Headline = styled.h1`
-  color: ${colors.main.default};
+  color: var(--main-color);
   margin-bottom: 1rem;
   text-transform: uppercase;
   font-size: 2rem;

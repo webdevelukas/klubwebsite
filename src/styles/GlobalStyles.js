@@ -7,13 +7,28 @@ export default createGlobalStyle`${css`
     box-sizing: border-box;
   }
   html {
-    --main-color: 130, 0, 0;
-    --secondary-color: 255, 85, 76;
+    --main-color: hsl(0, 100%, 25%);
+    --main-color-shadow: hsla(0, 100%, 25%, 15%);
+    --main-color-overlay: hsla(0, 100%, 25%, 75%);
+    --text-color: hsl(0, 100%, 5%);
+    --highlight-color: hsl(0, 100%, 55%);
+    --highlight-color-shadow: hsla(0, 100%, 55%, 15%);
+    --highlight-color-overlay: hsla(0, 100%, 55%, 75%);
     --max-content-width: 1366px;
+    --max-page-width: 1920px;
+    --content-background: hsl(0, 0%, 100%);
+    --content-background-overlay: hsla(0, 0%, 100%, 75%);
+    --content-background-alternative: #efefef;
+    --extra-small-spacing: 0.25rem;
+    --small-spacing: 0.5rem;
+    --medium-spacing: 1rem;
+    --large-spacing: 2rem;
+    --extra-large-spacing: 3rem;
+    --border-radius: 3px;
 
-    font-family: Cairo, sans-serif;
-    font-weight: 400;
-    font-style: normal;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
     font-size: 16px;
   }
   body {
@@ -46,6 +61,6 @@ export default createGlobalStyle`${css`
   a {
     cursor: pointer;
     text-decoration: none;
-    color: inherit;
+    color: var(--highlight-color);
   }
 `}`;

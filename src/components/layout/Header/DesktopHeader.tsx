@@ -132,8 +132,8 @@ const Header = styled.header<{ headerIsVisible: boolean }>`
   padding: 0 1rem;
   z-index: 2000;
   transition: all 150ms ease-in-out;
-  background: rgb(var(--main-color));
-  box-shadow: 0 0.25rem 0 rgba(var(--main-color), 0.15);
+  background: var(--main-color);
+  box-shadow: 0 0.25rem 0 var(--main-color-shadow);
   top: 0;
 
   visibility: ${({ headerIsVisible }) =>

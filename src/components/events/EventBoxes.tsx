@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import type { Events } from "types";
-import { colors } from "styles/colors";
 import EventBox from "./EventBox";
 
 type EventBoxesProps = {
@@ -77,7 +76,7 @@ const GreyOverlay = styled.div<{ left?: boolean; right?: boolean }>`
   width: 2rem;
   background: linear-gradient(
     to ${({ left }) => (left ? "right" : "left")},
-    ${colors.neutral},
+    "var(--content-background-alternative)",
     rgba(224, 224, 224, 0)
   );
   z-index: 1;
@@ -87,7 +86,7 @@ const Headline = styled.h2`
   font-size: 1rem;
   text-transform: uppercase;
   justify-self: center;
-  color: ${colors.main.default};
+  color: var(--main-color);
   text-align: center;
   margin-bottom: 0.5rem;
 
@@ -97,7 +96,7 @@ const Headline = styled.h2`
 `;
 
 const ShowMoreEventsBox = styled.article`
-  background-color: ${colors.secondary};
+  background-color: var(--highlight-color);
   display: flex;
   align-items: center;
   justify-content: center;

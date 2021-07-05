@@ -65,7 +65,7 @@ const Container = styled.article`
   padding: var(--medium-spacing);
 
   @media screen and (min-width: 992px) {
-    grid-template-columns: auto 30%;
+    grid-template-columns: auto 50%;
     justify-content: center;
   }
 `;

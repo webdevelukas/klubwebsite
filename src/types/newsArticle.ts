@@ -1,5 +1,7 @@
+import { Image } from "./image";
+
 export type NewsArticle = {
-  image: { url: string; alt: string };
+  image: Image;
   title: string;
   createdAt: string;
   slug: string;

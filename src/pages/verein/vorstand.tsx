@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { colors } from "styles/colors";
 import BoardMember from "components/BoardMember";
 import graphCMS from "services/graphCMS";
 import { Authors } from "types/author";
@@ -44,10 +43,10 @@ export default VorstandsPage;
 const Container = styled.div`
   background: white;
   padding: 2rem 1rem 4rem;
-  border-bottom: 0.25rem solid ${colors.main.default};
+  border-bottom: 0.25rem solid var(--main-color);
 `;
 const Headline = styled.h1`
-  color: ${colors.main.default};
+  color: var(--main-color);
   margin-bottom: 1rem;
   line-height: 2.25rem;
   text-transform: uppercase;

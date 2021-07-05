@@ -1,6 +1,5 @@
 import Headline from "elements/Headline";
 import styled from "styled-components";
-import { colors } from "styles/colors";
 
 function AnfahrtsPage() {
   return (
@@ -37,5 +36,5 @@ export async function getStaticProps() {
 const Container = styled.div`
   background: white;
   padding: 2rem 1rem 4rem;
-  border-bottom: 0.25rem solid ${colors.main.default};
+  border-bottom: 0.25rem solid var(--main-color);
 `;
