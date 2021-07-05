@@ -1,19 +1,18 @@
 import mainNavItems from "api/mainNavItems";
 import { GetStaticPaths, GetStaticProps } from "next";
 import styled from "styled-components";
-import NextImage from "next/image";
+import Card from "components/departments/Card";
 import NextLink from "next/link";
-import Headline from "elements/Headline";
-import AvatarList from "components/AvatarList";
+import HeroImage from "components/layout/HeroImage";
+import AvatarList from "components/users/AvatarList";
+import { Groups, Image } from "types";
+import Map from "components/maps/Map";
 
 type DepartmentPageProps = {
   department: string;
-  groups: { name: string; slug: string; image: string }[];
+  groups: Groups;
   users: {
-    image: {
-      url: string;
-      alt?: string;
-    };
+    image: Image;
     name: string;
     role: string;
   }[];
@@ -21,52 +20,37 @@ type DepartmentPageProps = {
 
 function DepartmentPage({ department, groups, users }: DepartmentPageProps) {
   return (
-    <Container>
-      <Article>
-        <Headline>Abteilung Fußball</Headline>
-        <GridContainer>
-          {groups.map(({ name, slug, image }, index) => (
-            <NextLink key={index} href={`${department}/${slug}`} passHref>
-              <a>
-                <DepartmentBox>
-                  <ColorBox>
-                    <DepartmentName>{name}</DepartmentName>
-                  </ColorBox>
-                  <NextImage src={image} layout="fill" objectFit="cover" />
-                </DepartmentBox>
-              </a>
-            </NextLink>
-          ))}
-        </GridContainer>
-      </Article>
-      <Aside>
-        <div>
-          <H2>Ansprechpartner</H2>
-          <AvatarList users={users} />
-        </div>
-        <div>
-          <H2>Anfahrt</H2>
-          <iframe
-            width="100%"
-            height="350"
-            frameBorder="0"
-            scrolling="no"
-            marginHeight={0}
-            marginWidth={0}
-            src="https://www.openstreetmap.org/export/embed.html?bbox=11.561028957366945%2C48.46811269807975%2C11.570041179656984%2C48.473333821256304&amp;layer=mapnik&amp;marker=48.470723326820135%2C11.565535068511963"
-          />
-          <small>
-            <a
-              href="https://www.openstreetmap.org/?mlat=48.47072&amp;mlon=11.56554#map=17/48.47072/11.56554"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View Larger Map
-            </a>
-          </small>
-        </div>
-      </Aside>
-    </Container>
+    <PageGrid>
+      <HeroImage
+        title={"Abteilung Fußball"}
+        subtitle={`400 Mitglieder`}
+        image={{
+          url: "https://www.tsvpaunzhausen.de/files/cache/170b541ca591f6313f219f2bf6226a5f_f716.jpg",
+          alt: "",
+        }}
+      />
+      <Container>
+        <Article>
+          <GridContainer>
+            {groups.map((group, index) => (
+              <NextLink
+                key={index}
+                href={`${department}/${group.slug}`}
+                passHref
+              >
+                <a>
+                  <Card data={group} />
+                </a>
+              </NextLink>
+            ))}
+          </GridContainer>
+        </Article>
+        <Aside>
+          <AvatarList users={users} title="Ansprechpartner" />
+          <Map title="Anfahrt" />
+        </Aside>
+      </Container>
+    </PageGrid>
   );
 }
 
@@ -78,32 +62,42 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     {
       name: "Herren 1",
       slug: "herren-1",
-      image:
-        "https://www.tsvpaunzhausen.de/files/cache/170b541ca591f6313f219f2bf6226a5f_f716.jpg",
+      image: {
+        url: "https://www.tsvpaunzhausen.de/files/cache/170b541ca591f6313f219f2bf6226a5f_f716.jpg",
+        alt: "",
+      },
     },
     {
       name: "Herren 2",
       slug: "herren-2",
-      image:
-        "https://www.tsvpaunzhausen.de/files/cache/170b541ca591f6313f219f2bf6226a5f_f716.jpg",
+      image: {
+        url: "https://www.tsvpaunzhausen.de/files/cache/170b541ca591f6313f219f2bf6226a5f_f716.jpg",
+        alt: "",
+      },
     },
     {
       name: "U15-Junioren",
       slug: "u15-junioren",
-      image:
-        "https://www.tsvpaunzhausen.de/files/8915/7134/8596/2019-10-14_TSV_C_Mannschaftsfoto.jpg",
+      image: {
+        url: "https://www.tsvpaunzhausen.de/files/8915/7134/8596/2019-10-14_TSV_C_Mannschaftsfoto.jpg",
+        alt: "",
+      },
     },
     {
       name: "U13-Junioren",
       slug: "u13-junioren",
-      image:
-        "https://www.tsvpaunzhausen.de/files/8915/7134/8596/2019-10-14_TSV_C_Mannschaftsfoto.jpg",
+      image: {
+        url: "https://www.tsvpaunzhausen.de/files/8915/7134/8596/2019-10-14_TSV_C_Mannschaftsfoto.jpg",
+        alt: "",
+      },
     },
     {
       name: "U9-Junioren",
       slug: "u9-junioren",
-      image:
-        "https://www.tsvpaunzhausen.de/files/1315/7441/7477/U7_U9_TSV-Paunzhausen_Mannschaftsbild.jpg",
+      image: {
+        url: "https://www.tsvpaunzhausen.de/files/1315/7441/7477/U7_U9_TSV-Paunzhausen_Mannschaftsbild.jpg",
+        alt: "",
+      },
     },
   ];
   const users = [
@@ -163,7 +157,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 const Article = styled.article`
   grid-area: article;
-  padding: 0 1rem;
+  padding: 0 var(--small-spacing);
 
   @media screen and (min-width: 576px) {
     padding: 0;
@@ -172,11 +166,13 @@ const Article = styled.article`
 const Aside = styled.aside`
   display: grid;
   grid-area: aside;
-  padding: 1rem 1rem 2rem;
-  background: white;
   align-self: start;
-  border-bottom: 0.25rem solid var(--main-color);
   row-gap: 2rem;
+  padding: 0 var(--small-spacing);
+
+  @media screen and (min-width: 576px) {
+    padding: 0;
+  }
 `;
 
 const Container = styled.div`
@@ -186,11 +182,14 @@ const Container = styled.div`
   grid-template-areas:
     "article"
     "aside";
-  grid-column-gap: 2rem;
+  row-gap: 2rem;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
 
   @media screen and (min-width: 576px) {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: "article article aside";
+    column-gap: 2rem;
   }
 `;
 
@@ -204,31 +203,11 @@ const GridContainer = styled.div`
   }
 `;
 
-const DepartmentBox = styled.div`
-  position: relative;
+const PageGrid = styled.div`
   display: grid;
-  grid-template-rows: 12rem;
-  background-color: white;
-`;
-
-const DepartmentName = styled.h3`
-  position: relative;
-  color: var(--main-color);
-`;
-
-const ColorBox = styled.div`
-  position: absolute;
-  bottom: 1rem;
-  padding: 0.25rem 1rem;
-  background-color: white;
-  z-index: 10;
-  border-bottom: 0.25rem solid var(--main-color);
-`;
-
-const H2 = styled.h2`
-  text-transform: uppercase;
-  justify-self: center;
-  color: var(--main-color);
-  text-align: center;
-  margin-bottom: 1rem;
+  grid-auto-rows: auto;
+  grid-auto-flow: row;
+  row-gap: var(--large-spacing);
+  max-width: var(--max-content-width);
+  margin: 0 auto;
 `;

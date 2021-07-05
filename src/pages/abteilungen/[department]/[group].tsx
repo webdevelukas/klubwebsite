@@ -1,12 +1,13 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import styled from "styled-components";
-import Headline from "elements/Headline";
-import AvatarList from "components/AvatarList";
 import graphCMS from "services/graphCMS";
-import BlogPost from "components/news/BlogPost";
-import { Events, Posts } from "types";
-import BlogPosts from "components/news/BlogPosts";
-import EventBoxes from "components/events/EventBoxes";
+import { Events, Image, Posts } from "types";
+import AvatarList from "components/users/AvatarList";
+import NewsListContainer from "components/news/NewsListContainer";
+import Map from "components/maps/Map";
+import HeroImage from "components/layout/HeroImage";
+import TabContainer from "components/layout/TabContainer";
+import { matches, standings, teamMembers } from "api";
 
 type DepartmentPageProps = {
   department: string;
@@ -14,62 +15,39 @@ type DepartmentPageProps = {
   posts: Posts;
   events: Events;
   users: {
-    image: {
-      url: string;
-      alt?: string;
-    };
+    image: Image;
     name: string;
     role: string;
   }[];
 };
 
-function DepartmentPage({
-  department,
-  group,
-  users,
-  posts,
-  events,
-}: DepartmentPageProps) {
+function DepartmentPage({ users, posts }: DepartmentPageProps) {
   return (
-    <Container>
-      <Article>
-        <Headline>
-          {group} - {department}
-        </Headline>
-        <GridContainer>
-          <BlogPost posts={posts} />
-          <EventBoxes events={events} />
-          <BlogPosts posts={posts} />
-        </GridContainer>
-      </Article>
-      <Aside>
-        <div>
-          <H2>Ansprechpartner</H2>
-          <AvatarList users={users} />
-        </div>
-        <div>
-          <H2>Anfahrt</H2>
-          <iframe
-            width="100%"
-            height="350"
-            frameBorder="0"
-            scrolling="no"
-            marginHeight={0}
-            marginWidth={0}
-            src="https://www.openstreetmap.org/export/embed.html?bbox=11.561028957366945%2C48.46811269807975%2C11.570041179656984%2C48.473333821256304&amp;layer=mapnik&amp;marker=48.470723326820135%2C11.565535068511963"
+    <PageWrapper>
+      <HeroImage
+        title={"1. Mannschaft"}
+        subtitle={`Fußball - Herren`}
+        image={{
+          url: "https://scontent-muc2-1.xx.fbcdn.net/v/t1.6435-9/59841612_2213730432209555_2636491427273506816_n.jpg?_nc_cat=100&ccb=1-3&_nc_sid=e3f864&_nc_ohc=YHlvfsp_CuUAX847ZTM&_nc_ht=scontent-muc2-1.xx&oh=4e35147c4fe521641fff0892b3dd4e5d&oe=60DF1D15",
+          alt: "",
+        }}
+        centered
+      />
+      <Container>
+        <Wrapper>
+          <TabContainer
+            matches={matches}
+            standings={standings}
+            teamMembers={teamMembers}
           />
-          <small>
-            <a
-              href="https://www.openstreetmap.org/?mlat=48.47072&amp;mlon=11.56554#map=17/48.47072/11.56554"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View Larger Map
-            </a>
-          </small>
-        </div>
-      </Aside>
-    </Container>
+        </Wrapper>
+        <Aside>
+          <AvatarList users={users} title="Ansprechpartner" />
+          <NewsListContainer posts={posts} title="Aktuelles" />
+          <Map title="Anfahrt" />
+        </Aside>
+      </Container>
+    </PageWrapper>
   );
 }
 
@@ -87,6 +65,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       },
       name: "Alexaner Krivitskiy",
       role: "Abteilungsleiter",
+      phone: "+49 1128 2121",
+      email: "asda@asddas.de",
     },
     {
       image: {
@@ -95,6 +75,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       },
       name: "Alexaner Krivitskiy",
       role: "Abteilungsleiter",
+      phone: "+49 1128 2121",
+      email: "asda@asddas.de",
     },
     {
       image: {
@@ -103,6 +85,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       },
       name: "Alexaner Krivitskiy",
       role: "Abteilungsleiter",
+      phone: "+49 1128 2121",
+      email: "asda@asddas.de",
     },
     {
       image: {
@@ -111,6 +95,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       },
       name: "Alexaner Krivitskiy",
       role: "Abteilungsleiter",
+      phone: "+49 1128 2121",
+      email: "asda@asddas.de",
     },
   ];
 
@@ -129,7 +115,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         name
         uid
       }
-      groups {name}
+      createdAt
+      content {
+        html
+      }
     }
     events(orderBy: dateandtime_ASC) {
       dateandtime
@@ -165,9 +154,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-const Article = styled.article`
-  grid-area: article;
-  padding: 0 1rem;
+const Wrapper = styled.div`
+  grid-area: content;
+  padding: 0 var(--small-spacing);
 
   @media screen and (min-width: 576px) {
     padding: 0;
@@ -176,11 +165,13 @@ const Article = styled.article`
 const Aside = styled.aside`
   display: grid;
   grid-area: aside;
-  padding: 1rem 1rem 2rem;
-  background: white;
   align-self: start;
-  border-bottom: 0.25rem solid var(--main-color);
   row-gap: 2rem;
+  padding: 0 var(--small-spacing);
+
+  @media screen and (min-width: 576px) {
+    padding: 0;
+  }
 `;
 
 const Container = styled.div`
@@ -188,26 +179,22 @@ const Container = styled.div`
   grid-template-columns: 1fr;
   grid-auto-rows: auto;
   grid-template-areas:
-    "article"
+    "content"
     "aside";
-  grid-column-gap: 2rem;
+  row-gap: 2rem;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
 
-  @media screen and (min-width: 576px) {
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: "article article aside";
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: "content aside";
+    column-gap: 2rem;
   }
 `;
 
-const GridContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  row-gap: 2rem;
-`;
-
-const H2 = styled.h2`
-  text-transform: uppercase;
-  justify-self: center;
-  color: var(--main-color);
-  text-align: center;
-  margin-bottom: 1rem;
+const PageWrapper = styled.div`
+  display: grid;
+  grid-auto-rows: auto;
+  grid-auto-flow: row;
+  row-gap: var(--large-spacing);
 `;
