@@ -1,7 +1,7 @@
+import { Image } from "./image";
+
 export type User = {
-  image: {
-    url: string;
-  };
+  image: Image;
   name: string;
   role?: string;
   email?: string;
