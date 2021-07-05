@@ -39,7 +39,7 @@ const Container = styled.article`
   grid-auto-flow: row;
 `;
 
-const ImageWrapper = styled.div<{ small: boolean }>`
+const ImageWrapper = styled.div<{ small?: true }>`
   position: relative;
   padding-bottom: 40%;
   width: 100%;
