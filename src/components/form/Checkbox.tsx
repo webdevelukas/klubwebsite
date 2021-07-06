@@ -81,7 +81,7 @@ const Checkmark = styled.svg`
 `;
 
 const StyledCheckbox = styled.div<{ checked: boolean }>`
-  width: 2rem;
+  width: 1.9rem;
   height: 2rem;
   background: ${({ checked }) =>
     checked
