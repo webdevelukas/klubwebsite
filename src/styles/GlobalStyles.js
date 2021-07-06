@@ -11,9 +11,11 @@ export default createGlobalStyle`${css`
     --main-color-shadow: hsla(0, 100%, 25%, 15%);
     --main-color-overlay: hsla(0, 100%, 25%, 75%);
     --text-color: hsl(0, 100%, 5%);
+    --text-color-light: hsla(0, 100%, 5%, 35%);
     --highlight-color: hsl(0, 100%, 55%);
     --highlight-color-shadow: hsla(0, 100%, 55%, 15%);
     --highlight-color-overlay: hsla(0, 100%, 55%, 75%);
+    --outline-color: rgb(0, 95, 204);
     --max-content-width: 1366px;
     --max-page-width: 1920px;
     --content-background: hsl(0, 0%, 100%);
