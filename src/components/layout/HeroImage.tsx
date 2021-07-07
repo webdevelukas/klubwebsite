@@ -44,7 +44,7 @@ const ImageWrapper = styled.div`
   width: 100%;
 
   @media screen and (min-width: 768px) {
-    padding-bottom: 40%;
+    padding-bottom: 80vh;
   }
 `;
 
