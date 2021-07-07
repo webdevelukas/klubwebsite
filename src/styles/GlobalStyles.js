@@ -11,6 +11,7 @@ export default createGlobalStyle`${css`
     --main-color-shadow: hsla(0, 100%, 25%, 15%);
     --main-color-overlay: hsla(0, 100%, 25%, 75%);
     --text-color: hsl(0, 100%, 5%);
+    --text-color-lighter: hsla(0, 100%, 5%, 55%);
     --text-color-light: hsla(0, 100%, 5%, 35%);
     --highlight-color: hsl(0, 100%, 55%);
     --highlight-color-shadow: hsla(0, 100%, 55%, 15%);

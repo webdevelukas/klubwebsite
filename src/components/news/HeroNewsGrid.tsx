@@ -154,11 +154,7 @@ const GradientOverlay = styled.div`
   z-index: 10;
   bottom: 0;
   width: 100%;
-  background: linear-gradient(
-    to top,
-    var(--text-color),
-    rgba(255, 255, 255, 0)
-  );
+  background: linear-gradient(to top, var(--text-color), hsla(0, 100%, 5%, 0%));
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
