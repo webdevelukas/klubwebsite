@@ -1,5 +1,41 @@
 const mainNavItems = [
   {
+    url: "/news",
+    title: "News",
+    submenuItems: [
+      {
+        url: "/news/fussball",
+        title: "Fußball",
+        slug: "fussball",
+        links: [],
+      },
+      {
+        url: "/news/tennis",
+        title: "Tennis",
+        slug: "tennis",
+        links: [],
+      },
+      {
+        url: "/news/gymnastik",
+        title: "Gymnastik",
+        slug: "gymnastik",
+        links: [],
+      },
+      {
+        url: "/news/theatergruppe",
+        title: "Theatergruppe",
+        slug: "theatergruppe",
+        links: [],
+      },
+      {
+        url: "/news/stockschiessen",
+        title: "Stockschiessen",
+        slug: "stockschiessen",
+        links: [],
+      },
+    ],
+  },
+  {
     url: "/verein",
     title: "Klub",
     submenuItems: [

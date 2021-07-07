@@ -7,6 +7,7 @@ export const Button = styled.button`
   border-radius: var(--border-radius);
   color: var(--content-background);
   font-weight: bold;
+  cursor: pointer;
 
   svg {
     position: absolute;

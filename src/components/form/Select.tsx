@@ -14,12 +14,12 @@ type SelectProps = {
 };
 
 export function Select({ ...props }: SelectProps) {
-  const { label, id, required, error, options } = props;
+  const { label, id, required, error, options, placeholder } = props;
 
   return (
     <FormElement label={label} id={id} required={required} error={error}>
       <SelectContainer {...props}>
-        <Option value="">Bitte wähle einen Betreff</Option>
+        <Option value="">{placeholder}</Option>
         {options.map((option, index) => (
           <Option key={index} value={option}>
             {option}
