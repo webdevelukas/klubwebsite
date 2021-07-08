@@ -1,4 +1,5 @@
 export type Event = {
+  title: string;
   dateandtime: Date;
   department: { name: string };
   group: {
