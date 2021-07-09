@@ -9,7 +9,6 @@ type EventBoxesProps = {
 function EventBoxes({ events }: EventBoxesProps) {
   return (
     <Wrapper>
-      <Headline>Events</Headline>
       <Container>
         <GreyOverlay left />
         <GreyOverlay right />
@@ -80,19 +79,6 @@ const GreyOverlay = styled.div<{ left?: boolean; right?: boolean }>`
     rgba(224, 224, 224, 0)
   );
   z-index: 1;
-`;
-
-const Headline = styled.h2`
-  font-size: 1rem;
-  text-transform: uppercase;
-  justify-self: center;
-  color: var(--main-color);
-  text-align: center;
-  margin-bottom: 0.5rem;
-
-  @media screen and (min-width: 1100px) {
-    display: none;
-  }
 `;
 
 const ShowMoreEventsBox = styled.article`
