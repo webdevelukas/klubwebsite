@@ -35,7 +35,7 @@ const Wrapper = styled.div`
 const Container = styled.div`
   display: grid;
   padding: 0 2rem;
-  grid-auto-columns: minmax(13.5rem, 70vw);
+  grid-auto-columns: 15rem;
   grid-auto-flow: column;
   grid-column-gap: 1rem;
   overflow-x: auto;
@@ -102,4 +102,5 @@ const ShowMoreEventsBox = styled.article`
   justify-content: center;
   color: white;
   font-size: 1.25rem;
+  border-radius: var(--border-radius);
 `;
