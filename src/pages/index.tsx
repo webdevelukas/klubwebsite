@@ -45,6 +45,7 @@ export async function getStaticProps() {
       content {html}
     }
     events(orderBy: dateandtime_ASC) {
+      title
       dateandtime
       department {name}
       group {
