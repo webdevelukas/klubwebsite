@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import renderTime from "services/renderTime";
-import renderDayAndDate from "services/renderDayAndDate";
 import type { Event } from "types";
 import NextImage from "next/image";
 
@@ -9,29 +8,58 @@ type EventBoxProps = {
 };
 
 function EventBox({ event }: EventBoxProps) {
-  const { group } = event;
+  const { group, dateandtime, title } = event;
+  const eventDate = new Date(dateandtime);
+
+  const weekday = new Intl.DateTimeFormat("de-DE", {
+    weekday: "long",
+  }).format(eventDate);
+  const monthAndDay = new Intl.DateTimeFormat("de-DE", {
+    month: "2-digit",
+    day: "2-digit",
+  }).format(eventDate);
 
   return (
     <Article>
-      <Date>{renderDayAndDate(event?.dateandtime)}</Date>
-      <Time>{renderTime(event?.dateandtime)} Uhr</Time>
-      <Wrapper>
-        <SportsPictogram src="/pictogram.svg" />
-        {group && <AgeGroup>{group.name}</AgeGroup>}
-      </Wrapper>
+      <MainContentWrapper>
+        <DayAndDateContainer>
+          <Day>{weekday}</Day>
+          <DateString>{monthAndDay}</DateString>
+          <ImageContainer>
+            <ImageWrapper>
+              <NextImage
+                src="/pictogram.svg"
+                layout="fill"
+                objectFit="contain"
+              />
+            </ImageWrapper>
+          </ImageContainer>
+        </DayAndDateContainer>
+        <Wrapper>
+          <DescriptionContainer>
+            <Title>{title}</Title>
+            <GroupAndTime>
+              {group && `${group.name} - `}
+              {renderTime(dateandtime)} Uhr
+            </GroupAndTime>
+          </DescriptionContainer>
+        </Wrapper>
+      </MainContentWrapper>
       <OpponentsContainer>
-        <NextImage
-          src="/tsv-paunzhausen.png"
-          width={1000}
-          height={1000}
-          objectFit="contain"
-        />
-        <NextImage
-          src="/TSV-Au.png"
-          width={1000}
-          height={1000}
-          objectFit="contain"
-        />
+        <LogoContainer>
+          <LogoWrapper>
+            <NextImage
+              src="/tsv-paunzhausen.png"
+              layout="fill"
+              objectFit="contain"
+            />
+          </LogoWrapper>
+        </LogoContainer>
+        <LogoContainer>
+          <LogoWrapper>
+            <NextImage src="/TSV-Au.png" layout="fill" objectFit="contain" />
+          </LogoWrapper>
+        </LogoContainer>
       </OpponentsContainer>
     </Article>
   );
@@ -40,54 +68,101 @@ function EventBox({ event }: EventBoxProps) {
 export default EventBox;
 
 const Article = styled.article`
-  position: relative;
-  padding: 1rem;
-  background: white;
-  border-bottom: 0.25rem solid var(--main-color);
+  display: grid;
+  grid-auto-columns: auto;
+  grid-auto-flow: column;
+  column-gap: 1px;
 `;
 
-const Date = styled.p`
-  font-size: 1.75rem;
-  line-height: 1.75rem;
+const MainContentWrapper = styled.div`
+  display: grid;
+  grid-template-rows: 2.5rem auto;
+  gap: 1px;
+`;
+
+const DayAndDateContainer = styled.div`
+  display: grid;
+  grid-template-columns: auto auto 2.5rem;
   font-weight: bold;
-  color: var(--main-color);
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
+  column-gap: 1px;
+  font-size: 0.875rem;
 `;
 
-const Time = styled.p`
+const Day = styled.p`
+  display: flex;
+  background-color: var(--main-color);
+  padding: var(--extra-small-spacing) var(--small-spacing);
+  color: var(--content-background);
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius) 0 0 0;
+`;
+
+const DateString = styled.div`
+  display: flex;
+  background-color: var(--content-background);
+  padding: var(--small-spacing);
   color: var(--main-color);
-  text-transform: uppercase;
-  line-height: 1rem;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Wrapper = styled.div`
-  margin-top: 1.5rem;
   display: grid;
-  grid-template-columns: auto 1fr;
-  grid-column-gap: 0.5rem;
-  max-width: 50%;
+  grid-template-columns: auto;
+  column-gap: 1px;
 `;
 
-const SportsPictogram = styled.img`
-  height: auto;
-  width: 1.25rem;
-  object-fit: contain;
-  align-self: center;
+const ImageContainer = styled.div`
+  padding: var(--small-spacing);
+  background-color: var(--content-background);
 `;
 
-const AgeGroup = styled.p`
-  align-self: center;
-  line-height: 1rem;
+const ImageWrapper = styled.div`
+  position: relative;
+  padding-bottom: 100%;
+`;
+
+const Title = styled.h3`
+  font-size: 0.875rem;
+`;
+
+const GroupAndTime = styled.p`
+  font-size: 0.875rem;
+`;
+
+const DescriptionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: var(--medium-spacing);
+  background-color: var(--content-background);
+  justify-content: center;
+  border-radius: 0 0 0 var(--border-radius);
 `;
 
 const OpponentsContainer = styled.div`
-  position: absolute;
-  width: 45%;
-  right: 0.75rem;
-  bottom: 0.75rem;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 2.75rem;
-  grid-column-gap: 0.25rem;
+  grid-template-rows: 1fr 1fr;
+  row-gap: 1px;
+  width: 3rem;
+`;
+
+const LogoContainer = styled.div`
+  padding: var(--small-spacing);
+  background-color: var(--content-background-alternative);
+
+  :first-of-type {
+    border-radius: 0 var(--border-radius) 0 0;
+  }
+
+  :last-of-type {
+    border-radius: 0 0 var(--border-radius) 0;
+  }
+`;
+
+const LogoWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
 `;

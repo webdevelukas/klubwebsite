@@ -22,6 +22,7 @@ export default createGlobalStyle`${css`
     --content-background: hsl(0, 0%, 100%);
     --content-background-overlay: hsla(0, 0%, 100%, 75%);
     --content-background-alternative: #efefef;
+    --body-background: 224, 224, 224;
     --extra-small-spacing: 0.25rem;
     --small-spacing: 0.5rem;
     --medium-spacing: 1rem;
@@ -39,7 +40,7 @@ export default createGlobalStyle`${css`
     width: 100%;
     padding: 0;
     margin: 0;
-    background: rgb(224, 224, 224);
+    background: rgb(var(--body-background));
     overflow-x: hidden;
   }
   button,

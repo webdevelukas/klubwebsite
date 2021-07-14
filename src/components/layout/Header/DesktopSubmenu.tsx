@@ -57,7 +57,7 @@ const Container = styled.div`
   width: 100%;
   overflow: hidden;
   transition: all 0.3ms ease-in-out;
-  box-shadow: 0 0.25rem 0 rgba(var(--main-color), 0.15);
+  box-shadow: 0 0.25rem 0 var(--main-color-shadow);
 `;
 
 const GridContainer = styled.div`
@@ -78,4 +78,9 @@ const Link = styled.a<{ bold?: boolean }>`
   font-weight: ${({ bold }) => (bold ? "bold" : null)};
   border-bottom: 1px solid lightgray;
   color: var(--text-color);
+  padding: var(--small-spacing) 0;
+
+  :hover {
+    color: var(--highlight-color);
+  }
 `;

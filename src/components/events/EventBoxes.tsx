@@ -9,7 +9,6 @@ type EventBoxesProps = {
 function EventBoxes({ events }: EventBoxesProps) {
   return (
     <Wrapper>
-      <Headline>Events</Headline>
       <Container>
         <GreyOverlay left />
         <GreyOverlay right />
@@ -35,7 +34,7 @@ const Wrapper = styled.div`
 const Container = styled.div`
   display: grid;
   padding: 0 2rem;
-  grid-auto-columns: minmax(13.5rem, 70vw);
+  grid-auto-columns: 15rem;
   grid-auto-flow: column;
   grid-column-gap: 1rem;
   overflow-x: auto;
@@ -76,23 +75,10 @@ const GreyOverlay = styled.div<{ left?: boolean; right?: boolean }>`
   width: 2rem;
   background: linear-gradient(
     to ${({ left }) => (left ? "right" : "left")},
-    "var(--content-background-alternative)",
-    rgba(224, 224, 224, 0)
+    rgb(var(--body-background)),
+    rgba(var(--body-background), 0)
   );
   z-index: 1;
-`;
-
-const Headline = styled.h2`
-  font-size: 1rem;
-  text-transform: uppercase;
-  justify-self: center;
-  color: var(--main-color);
-  text-align: center;
-  margin-bottom: 0.5rem;
-
-  @media screen and (min-width: 1100px) {
-    display: none;
-  }
 `;
 
 const ShowMoreEventsBox = styled.article`
@@ -102,4 +88,5 @@ const ShowMoreEventsBox = styled.article`
   justify-content: center;
   color: white;
   font-size: 1.25rem;
+  border-radius: var(--border-radius);
 `;
