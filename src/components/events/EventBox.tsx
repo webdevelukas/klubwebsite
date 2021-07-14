@@ -22,38 +22,46 @@ function EventBox({ event }: EventBoxProps) {
 
   return (
     <Article>
-      <DayAndDateContainer>
-        <Day>{weekday}</Day>
-        <DateString>{monthAndDay}</DateString>
-        <ImageContainer>
-          <ImageWrapper>
-            <NextImage src="/pictogram.svg" layout="fill" objectFit="contain" />
-          </ImageWrapper>
-        </ImageContainer>
-      </DayAndDateContainer>
-      <Wrapper>
-        <DescriptionContainer>
-          <Title>{title}</Title>
-          <GroupAndTime>
-            {group && `${group.name} - `}
-            {renderTime(dateandtime)} Uhr
-          </GroupAndTime>
-        </DescriptionContainer>
-      </Wrapper>
-      {/* <OpponentsContainer>
-        <NextImage
-          src="/tsv-paunzhausen.png"
-          width={1000}
-          height={1000}
-          objectFit="contain"
-        />
-        <NextImage
-          src="/TSV-Au.png"
-          width={1000}
-          height={1000}
-          objectFit="contain"
-        />
-      </OpponentsContainer> */}
+      <MainContentWrapper>
+        <DayAndDateContainer>
+          <Day>{weekday}</Day>
+          <DateString>{monthAndDay}</DateString>
+          <ImageContainer>
+            <ImageWrapper>
+              <NextImage
+                src="/pictogram.svg"
+                layout="fill"
+                objectFit="contain"
+              />
+            </ImageWrapper>
+          </ImageContainer>
+        </DayAndDateContainer>
+        <Wrapper>
+          <DescriptionContainer>
+            <Title>{title}</Title>
+            <GroupAndTime>
+              {group && `${group.name} - `}
+              {renderTime(dateandtime)} Uhr
+            </GroupAndTime>
+          </DescriptionContainer>
+        </Wrapper>
+      </MainContentWrapper>
+      <OpponentsContainer>
+        <LogoContainer>
+          <LogoWrapper>
+            <NextImage
+              src="/tsv-paunzhausen.png"
+              layout="fill"
+              objectFit="contain"
+            />
+          </LogoWrapper>
+        </LogoContainer>
+        <LogoContainer>
+          <LogoWrapper>
+            <NextImage src="/TSV-Au.png" layout="fill" objectFit="contain" />
+          </LogoWrapper>
+        </LogoContainer>
+      </OpponentsContainer>
     </Article>
   );
 }
@@ -61,6 +69,13 @@ function EventBox({ event }: EventBoxProps) {
 export default EventBox;
 
 const Article = styled.article`
+  display: grid;
+  grid-auto-columns: auto;
+  grid-auto-flow: column;
+  column-gap: 1px;
+`;
+
+const MainContentWrapper = styled.div`
   display: grid;
   grid-template-rows: 2.5rem auto;
   gap: 1px;
@@ -126,16 +141,22 @@ const DescriptionContainer = styled.div`
   background-color: var(--content-background);
   justify-content: center;
   border-radius: 0 0 var(--border-radius) var(--border-radius);
-  min-height: 4rem;
 `;
 
 const OpponentsContainer = styled.div`
-  position: absolute;
-  width: 45%;
-  right: 0.75rem;
-  bottom: 0.75rem;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 2.75rem;
-  grid-column-gap: 0.25rem;
+  grid-template-rows: 1fr 1fr;
+  row-gap: 1px;
+  width: 3rem;
+`;
+
+const LogoContainer = styled.div`
+  padding: var(--small-spacing);
+  background-color: var(--content-background-alternative);
+`;
+
+const LogoWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
 `;
