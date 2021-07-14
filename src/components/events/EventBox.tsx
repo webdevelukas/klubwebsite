@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import renderTime from "services/renderTime";
-import renderDayAndDate from "services/renderDayAndDate";
 import type { Event } from "types";
 import NextImage from "next/image";
 
@@ -102,7 +101,7 @@ const Day = styled.p`
 
 const DateString = styled.div`
   display: flex;
-  background-color: var(--content-background-alternative);
+  background-color: var(--content-background);
   padding: var(--small-spacing);
   color: var(--main-color);
   align-items: center;
@@ -117,8 +116,7 @@ const Wrapper = styled.div`
 
 const ImageContainer = styled.div`
   padding: var(--small-spacing);
-  background-color: var(--content-background-alternative);
-  border-radius: 0 var(--border-radius) 0 0;
+  background-color: var(--content-background);
 `;
 
 const ImageWrapper = styled.div`
@@ -140,7 +138,7 @@ const DescriptionContainer = styled.div`
   padding: var(--medium-spacing);
   background-color: var(--content-background);
   justify-content: center;
-  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  border-radius: 0 0 0 var(--border-radius);
 `;
 
 const OpponentsContainer = styled.div`
@@ -153,6 +151,14 @@ const OpponentsContainer = styled.div`
 const LogoContainer = styled.div`
   padding: var(--small-spacing);
   background-color: var(--content-background-alternative);
+
+  :first-of-type {
+    border-radius: 0 var(--border-radius) 0 0;
+  }
+
+  :last-of-type {
+    border-radius: 0 0 var(--border-radius) 0;
+  }
 `;
 
 const LogoWrapper = styled.div`
