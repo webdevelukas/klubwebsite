@@ -9,14 +9,16 @@ type VorstandsPageProps = {
 
 function VorstandsPage({ boardMembers }: VorstandsPageProps) {
   return (
-    <Container>
-      <Headline>Vorstand</Headline>
-      <Wrapper>
-        {boardMembers.map((boardMember, index) => (
-          <BoardMember key={index} boardMember={boardMember} />
-        ))}
-      </Wrapper>
-    </Container>
+    <PageWrapper>
+      <Container>
+        <Headline>Vorstand</Headline>
+        <Wrapper>
+          {boardMembers.map((boardMember, index) => (
+            <BoardMember key={index} boardMember={boardMember} />
+          ))}
+        </Wrapper>
+      </Container>
+    </PageWrapper>
   );
 }
 
@@ -40,11 +42,16 @@ export async function getStaticProps() {
 
 export default VorstandsPage;
 
-const Container = styled.div`
-  background: white;
-  padding: 2rem 1rem 4rem;
-  border-bottom: 0.25rem solid var(--main-color);
+const PageWrapper = styled.div`
+  background-color: var(--content-background);
 `;
+
+const Container = styled.div`
+  padding: var(--large-spacing) var(--medium-spacing) var(--extra-large-spacing);
+  margin: 0 auto;
+  max-width: var(--max-content-width);
+`;
+
 const Headline = styled.h1`
   color: var(--main-color);
   margin-bottom: 1rem;
